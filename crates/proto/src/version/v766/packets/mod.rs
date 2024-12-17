@@ -7,3 +7,5 @@ macro_rules! export {
 
 export!(add_actor);
 export!(add_player);
+export!(award_achievement);
+export!(boss_event);
