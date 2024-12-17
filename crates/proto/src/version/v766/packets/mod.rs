@@ -4,3 +4,6 @@ macro_rules! export {
         pub use $name::*;
     };
 }
+
+export!(add_actor);
+export!(add_player);
