@@ -12,3 +12,4 @@ export!(boss_event);
 export!(camera_aim_assist);
 export!(camera_aim_assist_presets);
 export!(camera_instruction);
+export!(camera_presets);
