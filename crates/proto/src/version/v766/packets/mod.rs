@@ -16,3 +16,4 @@ export!(camera_presets);
 export!(change_dimension);
 export!(clientbound_close_form);
 export!(clientbound_debug_renderer);
+export!(clientbound_map_item_data);
