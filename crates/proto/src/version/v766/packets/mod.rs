@@ -14,3 +14,4 @@ export!(camera_aim_assist_presets);
 export!(camera_instruction);
 export!(camera_presets);
 export!(change_dimension);
+export!(clientbound_close_form);
