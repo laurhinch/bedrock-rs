@@ -4,3 +4,5 @@ macro_rules! export {
         pub use $name::*;
     };
 }
+
+export!(boss_event_update_type);
