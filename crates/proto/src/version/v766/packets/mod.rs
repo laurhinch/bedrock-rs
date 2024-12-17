@@ -15,3 +15,4 @@ export!(camera_instruction);
 export!(camera_presets);
 export!(change_dimension);
 export!(clientbound_close_form);
+export!(clientbound_debug_renderer);
