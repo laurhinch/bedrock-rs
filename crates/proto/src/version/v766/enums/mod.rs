@@ -6,3 +6,7 @@ macro_rules! export {
 }
 
 export!(boss_event_update_type);
+export!(code_builder_execution_state);
+export!(recipe_unlocking_context);
+export!(crafting_data_entry_type);
+export!(data_item_type);
