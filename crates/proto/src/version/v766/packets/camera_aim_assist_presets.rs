@@ -17,6 +17,7 @@ pub struct CategoryDefinition {
 #[derive(ProtoCodec, Clone, Debug)]
 pub struct PriorityEntry {
     pub id: String,
+    #[endianness(le)]
     pub priority: i32,
 }
 
