@@ -20,11 +20,15 @@ bedrockrs_form = { path = "crates/form" }
 
 bedrockrs_world = { path = "crates/world", optional = true }
 bedrockrs_paletted_storage = { path = "crates/paletted_storage", optional = true }
-uuid = { version = "1.11.0", features = ["v4"] }
 
 [dev-dependencies]
-tokio = { version = "1.40", features = ["full"] }
 nbtx = { git = "https://github.com/bedrock-crustaceans/nbtx" }
+
+tokio = { version = "1.*", features = ["full"] }
+
+fern = { version = "0.7", features = ["colored"] }
+log = "0.4"
+chrono = "0.4"
 
 [features]
 full = ["addon", "proto", "world"]
@@ -37,3 +41,9 @@ world = ["dep:bedrockrs_world", "dep:bedrockrs_paletted_storage"]
 name = "proto_server"
 path = "examples/proto/server.rs"
 required-features = ["proto"]
+
+[[example]]
+name = "proto_parsing"
+path = "examples/proto_parsing.rs"
+required-features = ["proto"]
+
