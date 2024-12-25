@@ -5,9 +5,7 @@ use bedrockrs_proto::v729::gamepackets::GamePackets;
 use bedrockrs_proto::v729::helper::ProtoHelperV729;
 use bedrockrs_proto::v729::packets::network_settings::NetworkSettingsPacket;
 use bedrockrs_proto::v729::packets::play_status::PlayStatusPacket;
-use bedrockrs_proto::v729::packets::player_disconnect::{
-    DisconnectPlayerPacket, DisconnectReason,
-};
+use bedrockrs_proto::v729::packets::player_disconnect::{DisconnectPlayerPacket, DisconnectReason};
 use bedrockrs_proto::v729::packets::resource_packs_info::ResourcePacksInfoPacket;
 use bedrockrs_proto::v729::packets::resource_packs_stack::ResourcePacksStackPacket;
 use bedrockrs_proto::v729::types::base_game_version::BaseGameVersion;
