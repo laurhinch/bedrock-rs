@@ -1,5 +1,5 @@
 use crate::version::v662::enums::PredictionType;
-use bedrockrs_core::Vec3;
+use vek::Vec3;
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 
 #[gamepacket(id = 161)]
