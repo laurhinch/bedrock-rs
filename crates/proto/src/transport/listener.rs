@@ -1,5 +1,5 @@
 use crate::error::{RakNetError, TransportLayerError};
-use crate::transport_layer::TransportLayerConnection;
+use crate::transport::TransportLayerConnection;
 
 pub enum TransportLayerListener {
     RakNet(rak_rs::Listener),

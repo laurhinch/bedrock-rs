@@ -5,7 +5,7 @@ use crate::compression::Compression;
 use crate::encryption::Encryption;
 use crate::error::ConnectionError;
 use crate::helper::ProtoHelper;
-use crate::transport_layer::TransportLayerConnection;
+use crate::transport::TransportLayerConnection;
 
 pub struct Connection {
     /// Represents the Connection's internal transport layer, which may vary
