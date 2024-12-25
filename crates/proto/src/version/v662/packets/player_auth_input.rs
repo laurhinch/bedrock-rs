@@ -6,7 +6,7 @@ use crate::version::v662::types::{
     ActorUniqueID, ItemStackRequestSlotInfo, PackedItemUseLegacyInventoryTransaction,
     PlayerBlockActions,
 };
-use bedrockrs_core::{Vec2, Vec3};
+use vek::{Vec2, Vec3};
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 use bedrockrs_proto_core::error::ProtoCodecError;
 use bedrockrs_proto_core::{ProtoCodec, ProtoCodecLE, ProtoCodecVAR};

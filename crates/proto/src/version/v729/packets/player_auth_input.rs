@@ -3,7 +3,7 @@ use crate::version::v729::types::input_data::InputData;
 use crate::version::v729::types::input_mode::InputMode;
 use crate::version::v729::types::interaction_model::InteractionModel;
 use crate::version::v729::types::play_mode::PlayMode;
-use bedrockrs_core::{Vec2, Vec3};
+use vek::{Vec2, Vec3};
 use bedrockrs_macros::gamepacket;
 use bedrockrs_proto_core::error::ProtoCodecError;
 use bedrockrs_proto_core::{ProtoCodec, ProtoCodecLE, ProtoCodecVAR};

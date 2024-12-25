@@ -1,4 +1,4 @@
-use bedrockrs_core::Vec2;
+use vek::Vec2;
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 
 #[gamepacket(id = 57)]

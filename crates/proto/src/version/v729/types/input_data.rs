@@ -1,5 +1,5 @@
 use crate::version::v729::types::block_actions::BlockActions;
-use bedrockrs_core::Vec2;
+use vek::Vec2;
 use bedrockrs_shared::actor_unique_id::ActorUniqueID;
 
 #[derive(Debug, Clone)]

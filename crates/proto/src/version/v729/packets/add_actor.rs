@@ -2,7 +2,7 @@ use crate::version::v729::types::{
     actor_link::ActorLink, attribute::Attribute, data_item::DataItem,
     property_sync_data::PropertySyncData,
 };
-use bedrockrs_core::{Vec2, Vec3};
+use vek::{Vec2, Vec3};
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 use bedrockrs_shared::{actor_runtime_id::ActorRuntimeID, actor_unique_id::ActorUniqueID};
 

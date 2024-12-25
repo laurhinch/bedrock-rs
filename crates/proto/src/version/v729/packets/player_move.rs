@@ -1,5 +1,5 @@
-use bedrockrs_core::Vec2;
-use bedrockrs_core::Vec3;
+use vek::Vec2;
+use vek::Vec3;
 use bedrockrs_macros::gamepacket;
 use bedrockrs_proto_core::error::ProtoCodecError;
 use bedrockrs_proto_core::{ProtoCodec, ProtoCodecLE, ProtoCodecVAR};

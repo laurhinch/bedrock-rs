@@ -4,7 +4,6 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-bedrockrs_core = { path = "../core" }
 bedrockrs_shared = { path = "../shared" }
 bedrockrs_proto_core = { path = "../proto_core" }
 bedrockrs_macros = { path = "../macros" }
@@ -17,17 +16,15 @@ byteorder = "1.5"
 varint-rs = "2.2"
 
 log = "0.4"
-thiserror = "1.0"
-dyn-clone = "1.0"
+vek = "0.17"
+thiserror = "2.0"
 
 jsonwebtoken = "9.3"
-ring = { version = "0.17" }
 rand = "0.8"
 base64 = "0.22"
 uuid = { version = "1.11", features = ["v4"] }
 serde_json = "1.0"
 tokio = { version = "1.40", features = ["full"] }
-futures = "0.3"
 
 flate2 = "1.0"
 snap = "1.1"

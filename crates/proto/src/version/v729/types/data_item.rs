@@ -1,5 +1,5 @@
 use crate::version::v729::types::block_pos::BlockPos;
-use bedrockrs_core::Vec3;
+use vek::Vec3;
 use bedrockrs_macros::ProtoCodec;
 
 #[derive(ProtoCodec, Debug, Clone)]

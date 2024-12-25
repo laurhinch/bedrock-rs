@@ -1,5 +1,5 @@
 use crate::version::v729::types::respawn_state::RespawnState;
-use bedrockrs_core::Vec3;
+use vek::Vec3;
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 use bedrockrs_shared::actor_runtime_id::ActorRuntimeID;
 

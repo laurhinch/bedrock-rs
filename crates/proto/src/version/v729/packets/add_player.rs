@@ -2,7 +2,7 @@ use crate::version::v729::types::ability_data::AbilityData;
 use crate::version::v729::types::actor_link::ActorLink;
 use crate::version::v729::types::item_stack_descriptor::ItemStackDescriptor;
 use crate::version::v729::types::property_sync_data::PropertySyncData;
-use bedrockrs_core::Vec3;
+use vek::Vec3;
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 use bedrockrs_shared::actor_runtime_id::ActorRuntimeID;
 use bedrockrs_shared::world::gamemode::Gamemode;

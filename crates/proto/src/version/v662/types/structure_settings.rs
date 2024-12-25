@@ -1,6 +1,6 @@
+use vek::Vec3;
 use crate::version::v662::enums::{AnimationMode, Mirror, Rotation};
 use crate::version::v662::types::{ActorUniqueID, NetworkBlockPosition};
-use bedrockrs_core::Vec3;
 use bedrockrs_macros::ProtoCodec;
 
 #[derive(ProtoCodec, Clone, Debug)]
