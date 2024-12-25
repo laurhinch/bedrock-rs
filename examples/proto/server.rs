@@ -1,42 +1,19 @@
 use bedrockrs::proto::connection::Connection;
 use bedrockrs::proto::listener::Listener;
-use bedrockrs_core::{Vec2, Vec3};
 use bedrockrs_proto::compression::Compression;
-use bedrockrs_proto::version::v729::gamepackets::GamePackets;
-use bedrockrs_proto::version::v729::helper::ProtoHelperV729;
-use bedrockrs_proto::version::v729::packets::network_settings::NetworkSettingsPacket;
-use bedrockrs_proto::version::v729::packets::play_status::PlayStatusPacket;
-use bedrockrs_proto::version::v729::packets::player_disconnect::{
-    DisconnectPlayerPacket, DisconnectReason,
-};
-use bedrockrs_proto::version::v729::packets::resource_packs_info::ResourcePacksInfoPacket;
-use bedrockrs_proto::version::v729::packets::resource_packs_stack::ResourcePacksStackPacket;
-use bedrockrs_proto::version::v729::packets::start_game::StartGamePacket;
-use bedrockrs_proto::version::v729::types::base_game_version::BaseGameVersion;
-use bedrockrs_proto::version::v729::types::block_pos::BlockPos;
-use bedrockrs_proto::version::v729::types::chat_restriction_level::ChatRestrictionLevel;
-use bedrockrs_proto::version::v729::types::edu_shared_uri_resource::EduSharedResourceUri;
-use bedrockrs_proto::version::v729::types::experiments::Experiments;
-use bedrockrs_proto::version::v729::types::level_settings::LevelSettings;
-use bedrockrs_proto::version::v729::types::network_permissions::NetworkPermissions;
-use bedrockrs_proto::version::v729::types::play_status::PlayStatusType;
-use bedrockrs_proto::version::v729::types::player_movement_mode::PlayerMovementMode;
-use bedrockrs_proto::version::v729::types::player_movement_settings::PlayerMovementSettings;
-use bedrockrs_proto::version::v729::types::spawn_biome_type::SpawnBiomeType;
-use bedrockrs_proto::version::v729::types::spawn_settings::SpawnSettings;
-use bedrockrs_proto_core::ProtoCodec;
-use bedrockrs_shared::actor_runtime_id::ActorRuntimeID;
-use bedrockrs_shared::actor_unique_id::ActorUniqueID;
-use bedrockrs_shared::world::difficulty::Difficulty;
-use bedrockrs_shared::world::dimension::Dimension;
-use bedrockrs_shared::world::editor_world_type::EditorWorldType;
-use bedrockrs_shared::world::gamemode::Gamemode;
-use bedrockrs_shared::world::generator_type::GeneratorType;
-use std::collections::HashMap;
+use bedrockrs_proto::v729::gamepackets::GamePackets;
+use bedrockrs_proto::v729::helper::ProtoHelperV729;
+use bedrockrs_proto::v729::packets::network_settings::NetworkSettingsPacket;
+use bedrockrs_proto::v729::packets::play_status::PlayStatusPacket;
+use bedrockrs_proto::v729::packets::player_disconnect::{DisconnectPlayerPacket, DisconnectReason};
+use bedrockrs_proto::v729::packets::resource_packs_info::ResourcePacksInfoPacket;
+use bedrockrs_proto::v729::packets::resource_packs_stack::ResourcePacksStackPacket;
+use bedrockrs_proto::v729::types::base_game_version::BaseGameVersion;
+use bedrockrs_proto::v729::types::experiments::Experiments;
+use bedrockrs_proto::v729::types::play_status::PlayStatusType;
 use std::net::{SocketAddr, SocketAddrV4};
 use std::str::FromStr;
 use tokio::time::Instant;
-use uuid::Uuid;
 
 #[tokio::main]
 async fn main() {

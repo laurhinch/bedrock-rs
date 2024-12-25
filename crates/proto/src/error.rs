@@ -2,9 +2,6 @@ use io::Error as IOError;
 use std::io;
 
 use bedrockrs_proto_core::error::ProtoCodecError;
-use rak_rs::connection::queue::SendQueueError;
-use rak_rs::connection::RecvError;
-use rak_rs::error::server::ServerError;
 use thiserror::Error;
 
 use crate::info::RAKNET_GAMEPACKET_ID;
@@ -23,7 +20,7 @@ pub enum ListenerError {
 
 #[derive(Error, Debug)]
 pub enum ConnectionError {
-    #[error("Proto Codec Error: {0}")]
+    #[error("ProtoCodec Error: {0}")]
     ProtoCodecError(#[from] ProtoCodecError),
     #[error("Connection Closed")]
     ConnectionClosed,
@@ -37,20 +34,28 @@ pub enum ConnectionError {
 pub enum TransportLayerError {
     #[error("IO Error: {0}")]
     IOError(#[from] IOError),
-    #[error("Raknet UDP Error: {0}")]
-    RakNetError(#[from] RaknetError),
+    #[error("RakNet Error: {0}")]
+    RakNetError(#[from] RakNetError),
+    #[error("Quic Error: {0}")]
+    QuicError(#[from] QuicError),
 }
 
 #[derive(Error, Debug, Clone)]
-pub enum RaknetError {
-    #[error("Error while Receive: {0}")]
-    RecvError(#[from] RecvError),
-    #[error("Error while Send: {0}")]
-    SendError(#[from] SendQueueError),
+pub enum RakNetError {
+    #[error("Receive Error: {0}")]
+    RecvError(#[from] rak_rs::connection::RecvError),
+    #[error("Send Error: {0}")]
+    SendError(#[from] rak_rs::connection::queue::SendQueueError),
     #[error("Server Error: {0}")]
-    ServerError(#[from] ServerError),
-    #[error("Invalid RakNet Header, expected: {RAKNET_GAMEPACKET_ID}, got: {0}")]
+    ServerError(#[from] rak_rs::error::server::ServerError),
+    #[error("Invalid RakNet Header (expected: {RAKNET_GAMEPACKET_ID}, got: {0})")]
     InvalidRakNetHeader(u8),
     #[error("Format Error: {0}")]
-    FormatError(String),
+    FormatError(&'static str),
+}
+
+#[derive(Error, Debug, Clone)]
+pub enum QuicError {
+    // #[error("Stream Error: {0}")]
+    // StreamError(s2n_quic::stream::Error),
 }

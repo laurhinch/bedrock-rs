@@ -3,8 +3,11 @@ pub mod compression;
 pub mod connection;
 pub mod encryption;
 pub mod error;
-pub mod helper;
+mod helper;
 pub mod info;
 pub mod listener;
-pub mod transport_layer;
-pub mod version;
+pub mod transport;
+mod version;
+
+pub use helper::*;
+pub use version::*;

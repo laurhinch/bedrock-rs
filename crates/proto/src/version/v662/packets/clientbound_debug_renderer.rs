@@ -1,4 +1,4 @@
-use bedrockrs_core::Vec3;
+use vek::Vec3;
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 
 #[derive(ProtoCodec, Clone, Debug)]

@@ -1,5 +1,5 @@
 use crate::version::v662::types::{ActorLink, ActorRuntimeID, ActorUniqueID, DataItem, PropertySyncData};
-use bedrockrs_core::{Vec2, Vec3};
+use vek::{Vec2, Vec3};
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 
 #[derive(ProtoCodec, Clone, Debug)]

@@ -11,7 +11,7 @@ use tokio::time::Interval;
 pub async fn shard<'t, T: ProtoHelper + Send + Sync + 't>(
     mut connection: Connection,
     // TODO: Look into making flush_interval optional
-    flush_interval: Interval,
+    _flush_interval: Interval,
     gamepacket_buffer_size: usize,
 ) -> (ConnectionShardSender<T>, ConnectionShardReceiver<T>)
 where

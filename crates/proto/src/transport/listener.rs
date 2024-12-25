@@ -1,20 +1,20 @@
-use crate::error::{RaknetError, TransportLayerError};
-use crate::transport_layer::TransportLayerConnection;
+use crate::error::{RakNetError, TransportLayerError};
+use crate::transport::TransportLayerConnection;
 
 pub enum TransportLayerListener {
     RakNet(rak_rs::Listener),
     // TODO NetherNet(...),
-    // TODO Quic(...),
+    // TODO Quic(s2n_quic::server::Server),
     // TODO Tcp(...),
 }
 
 impl TransportLayerListener {
     pub async fn start(&mut self) -> Result<(), TransportLayerError> {
         match self {
-            TransportLayerListener::RakNet(listener) => listener
+            Self::RakNet(listener) => listener
                 .start()
                 .await
-                .map_err(|err| TransportLayerError::RakNetError(RaknetError::ServerError(err)))?,
+                .map_err(|err| TransportLayerError::RakNetError(RakNetError::ServerError(err)))?,
         };
 
         Ok(())
@@ -22,10 +22,10 @@ impl TransportLayerListener {
 
     pub async fn stop(&mut self) -> Result<(), TransportLayerError> {
         match self {
-            TransportLayerListener::RakNet(listener) => listener
+            Self::RakNet(listener) => listener
                 .stop()
                 .await
-                .map_err(|err| TransportLayerError::RakNetError(RaknetError::ServerError(err)))?,
+                .map_err(|err| TransportLayerError::RakNetError(RakNetError::ServerError(err)))?,
         }
 
         Ok(())
@@ -33,9 +33,9 @@ impl TransportLayerListener {
 
     pub async fn accept(&mut self) -> Result<TransportLayerConnection, TransportLayerError> {
         let conn = match self {
-            TransportLayerListener::RakNet(listener) => {
+            Self::RakNet(listener) => {
                 TransportLayerConnection::RakNet(listener.accept().await.map_err(|err| {
-                    TransportLayerError::RakNetError(RaknetError::ServerError(err))
+                    TransportLayerError::RakNetError(RakNetError::ServerError(err))
                 })?)
             }
         };

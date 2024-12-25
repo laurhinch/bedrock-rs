@@ -2,12 +2,12 @@ use core::net::SocketAddr;
 
 use rak_rs::mcpe::motd::Gamemode;
 use rak_rs::Motd;
-use rand::RngCore;
+use rand::random;
 
 use crate::connection::Connection;
-use crate::error::{ListenerError, RaknetError, TransportLayerError};
+use crate::error::{ListenerError, RakNetError, TransportLayerError};
 use crate::info::MINECRAFT_EDITION_MOTD;
-use crate::transport_layer::TransportLayerListener;
+use crate::transport::TransportLayerListener;
 use crate::version::v729::info::PROTOCOL_VERSION;
 
 pub struct Listener {
@@ -32,12 +32,12 @@ impl Listener {
     ) -> Result<Self, ListenerError> {
         let mut rak_listener = rak_rs::Listener::bind(socket_addr).await.map_err(|err| {
             ListenerError::TransportListenerError(TransportLayerError::RakNetError(
-                RaknetError::ServerError(err),
+                RakNetError::ServerError(err),
             ))
         })?;
 
         // generate a random guid
-        let guid: u64 = rand::thread_rng().next_u64();
+        let guid: u64 = random::<u64>();
 
         // Set up the motd
         rak_listener.motd = Motd {

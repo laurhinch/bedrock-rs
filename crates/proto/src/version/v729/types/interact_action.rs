@@ -1,4 +1,4 @@
-use bedrockrs_core::Vec3;
+use vek::Vec3;
 
 #[derive(Debug, Clone)]
 pub enum InteractAction {
