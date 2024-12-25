@@ -53,7 +53,9 @@ use crate::version::v662::packets::{
     UpdateClientInputLocksPacket, UpdateEquipPacket, UpdatePlayerGameTypePacket,
     UpdateSoftEnumPacket, UpdateSubChunkBlocksPacket, UpdateTradePacket,
 };
-use crate::version::v662::{read_gamepacket_header, write_gamepacket_header, get_gamepacket_header_size_prediction};
+use crate::version::v662::{
+    get_gamepacket_header_size_prediction, read_gamepacket_header, write_gamepacket_header,
+};
 use crate::version::v766::packets::CodeBuilderSourcePacket;
 use bedrockrs_macros::gamepackets;
 use bedrockrs_proto_core::sub_client::SubClientID;
