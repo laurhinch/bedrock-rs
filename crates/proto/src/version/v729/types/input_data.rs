@@ -1,6 +1,6 @@
 use crate::version::v729::types::block_actions::BlockActions;
-use vek::Vec2;
 use bedrockrs_shared::actor_unique_id::ActorUniqueID;
+use vek::Vec2;
 
 #[derive(Debug, Clone)]
 pub struct InputData {

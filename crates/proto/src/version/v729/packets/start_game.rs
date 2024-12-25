@@ -1,7 +1,7 @@
-use vek::{Vec2, Vec3};
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
+use vek::{Vec2, Vec3};
 
 use crate::version::v729::types::level_settings::LevelSettings;
 use crate::version::v729::types::network_permissions::NetworkPermissions;
