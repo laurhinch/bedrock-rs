@@ -14,7 +14,7 @@ impl TransportLayerListener {
             Self::RakNet(listener) => listener
                 .start()
                 .await
-                .map_err(|err| TransportLayerError::RakNetError(RakNetError::ServerError(err)))?
+                .map_err(|err| TransportLayerError::RakNetError(RakNetError::ServerError(err)))?,
         };
 
         Ok(())
@@ -25,7 +25,7 @@ impl TransportLayerListener {
             Self::RakNet(listener) => listener
                 .stop()
                 .await
-                .map_err(|err| TransportLayerError::RakNetError(RakNetError::ServerError(err)))?
+                .map_err(|err| TransportLayerError::RakNetError(RakNetError::ServerError(err)))?,
         }
 
         Ok(())
