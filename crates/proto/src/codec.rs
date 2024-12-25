@@ -11,6 +11,8 @@ pub fn encode_gamepackets<T: ProtoHelper>(
     compression: Option<&Compression>,
     encryption: Option<&mut Encryption>,
 ) -> Result<Vec<u8>, ProtoCodecError> {
+    log::trace!("Encoding gamepackets");
+
     let mut gamepacket_stream = batch_gamepackets::<T>(gamepackets)?;
     gamepacket_stream = compress_gamepackets::<T>(gamepacket_stream, compression)?;
     gamepacket_stream = encrypt_gamepackets::<T>(gamepacket_stream, encryption)?;
@@ -23,6 +25,8 @@ pub fn decode_gamepackets<T: ProtoHelper>(
     compression: Option<&Compression>,
     encryption: Option<&mut Encryption>,
 ) -> Result<Vec<T::GamePacketType>, ProtoCodecError> {
+    log::trace!("Decoding gamepackets");
+    
     gamepacket_stream = decrypt_gamepackets::<T>(gamepacket_stream, encryption)?;
     gamepacket_stream = decompress_gamepackets::<T>(gamepacket_stream, compression)?;
     let gamepackets = separate_gamepackets::<T>(gamepacket_stream)?;
