@@ -8,8 +8,8 @@ use std::io::Cursor;
 
 pub fn encode_gamepackets<T: ProtoHelper>(
     gamepackets: &[T::GamePacketType],
-    compression: &Option<Compression>,
-    encryption: &mut Option<Encryption>,
+    compression: Option<&Compression>,
+    encryption: Option<&mut Encryption>,
 ) -> Result<Vec<u8>, ProtoCodecError> {
     let mut gamepacket_stream = batch_gamepackets::<T>(gamepackets)?;
     gamepacket_stream = compress_gamepackets::<T>(gamepacket_stream, compression)?;
@@ -20,8 +20,8 @@ pub fn encode_gamepackets<T: ProtoHelper>(
 
 pub fn decode_gamepackets<T: ProtoHelper>(
     mut gamepacket_stream: Vec<u8>,
-    compression: &Option<Compression>,
-    encryption: &mut Option<Encryption>,
+    compression: Option<&Compression>,
+    encryption: Option<&mut Encryption>,
 ) -> Result<Vec<T::GamePacketType>, ProtoCodecError> {
     gamepacket_stream = decrypt_gamepackets::<T>(gamepacket_stream, encryption)?;
     gamepacket_stream = decompress_gamepackets::<T>(gamepacket_stream, compression)?;
@@ -72,7 +72,7 @@ fn separate_gamepackets<T: ProtoHelper>(
 
 pub fn compress_gamepackets<T: ProtoHelper>(
     mut gamepacket_stream: Vec<u8>,
-    compression: &Option<Compression>,
+    compression: Option<&Compression>,
 ) -> Result<Vec<u8>, ProtoCodecError> {
     if let Some(compression) = compression {
         gamepacket_stream = compression.compress(gamepacket_stream)?;
@@ -83,7 +83,7 @@ pub fn compress_gamepackets<T: ProtoHelper>(
 
 pub fn decompress_gamepackets<T: ProtoHelper>(
     mut gamepacket_stream: Vec<u8>,
-    compression: &Option<Compression>,
+    compression: Option<&Compression>,
 ) -> Result<Vec<u8>, ProtoCodecError> {
     if let Some(compression) = compression {
         gamepacket_stream = compression.decompress(gamepacket_stream)?;
@@ -94,7 +94,7 @@ pub fn decompress_gamepackets<T: ProtoHelper>(
 
 pub fn encrypt_gamepackets<T: ProtoHelper>(
     mut gamepacket_stream: Vec<u8>,
-    encryption: &mut Option<Encryption>,
+    encryption: Option<&mut Encryption>,
 ) -> Result<Vec<u8>, ProtoCodecError> {
     if let Some(encryption) = encryption {
         gamepacket_stream = encryption.encrypt(gamepacket_stream)?;
@@ -105,7 +105,7 @@ pub fn encrypt_gamepackets<T: ProtoHelper>(
 
 pub fn decrypt_gamepackets<T: ProtoHelper>(
     mut gamepacket_stream: Vec<u8>,
-    encryption: &mut Option<Encryption>,
+    encryption: Option<&mut Encryption>,
 ) -> Result<Vec<u8>, ProtoCodecError> {
     if let Some(encryption) = encryption {
         gamepacket_stream = encryption.decrypt(gamepacket_stream)?;

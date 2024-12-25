@@ -32,7 +32,7 @@ impl Connection {
         gamepackets: &[T::GamePacketType],
     ) -> Result<(), ConnectionError> {
         let gamepacket_stream =
-            encode_gamepackets::<T>(gamepackets, &self.compression, &mut self.encryption)?;
+            encode_gamepackets::<T>(gamepackets, self.compression.as_ref(), self.encryption.as_mut())?;
 
         self.transport_layer.send(&gamepacket_stream).await?;
 
@@ -51,7 +51,7 @@ impl Connection {
         let gamepacket_stream = self.transport_layer.recv().await?;
 
         let gamepackets =
-            decode_gamepackets::<T>(gamepacket_stream, &self.compression, &mut self.encryption)?;
+            decode_gamepackets::<T>(gamepacket_stream, self.compression.as_ref(), self.encryption.as_mut())?;
 
         Ok(gamepackets)
     }
