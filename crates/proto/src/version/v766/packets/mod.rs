@@ -31,3 +31,5 @@ export!(jigsaw_structure_data);
 export!(legacy_telemetry_event);
 export!(mob_armor_equipment);
 export!(movement_effect);
+export!(player_armor_damage);
+export!(player_auth_input);

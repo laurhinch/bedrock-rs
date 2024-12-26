@@ -19,3 +19,4 @@ export!(item_stack_request_slot_info);
 export!(item_stack_response_container_info);
 export!(item_stack_response_slot_info);
 export!(level_settings);
+export!(packed_item_use_legacy_inventory_transaction);
