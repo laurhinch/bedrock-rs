@@ -1,11 +1,11 @@
 pub mod shard;
 
-use crate::codec::{encode_gamepackets, decode_gamepackets};
+use crate::codec::{decode_gamepackets, encode_gamepackets};
 use crate::compression::Compression;
 use crate::encryption::Encryption;
 use crate::error::ConnectionError;
 use crate::helper::ProtoHelper;
-use crate::transport_layer::TransportLayerConnection;
+use crate::transport::TransportLayerConnection;
 
 pub struct Connection {
     /// Represents the Connection's internal transport layer, which may vary
@@ -31,8 +31,11 @@ impl Connection {
         &mut self,
         gamepackets: &[T::GamePacketType],
     ) -> Result<(), ConnectionError> {
-        let gamepacket_stream =
-            encode_gamepackets::<T>(gamepackets, &self.compression, &mut self.encryption)?;
+        let gamepacket_stream = encode_gamepackets::<T>(
+            gamepackets,
+            self.compression.as_ref(),
+            self.encryption.as_mut(),
+        )?;
 
         self.transport_layer.send(&gamepacket_stream).await?;
 
@@ -50,8 +53,11 @@ impl Connection {
     ) -> Result<Vec<T::GamePacketType>, ConnectionError> {
         let gamepacket_stream = self.transport_layer.recv().await?;
 
-        let gamepackets =
-            decode_gamepackets::<T>(gamepacket_stream, &self.compression, &mut self.encryption)?;
+        let gamepackets = decode_gamepackets::<T>(
+            gamepacket_stream,
+            self.compression.as_ref(),
+            self.encryption.as_mut(),
+        )?;
 
         Ok(gamepackets)
     }

@@ -18,7 +18,7 @@ bedrockrs_addon = { path = "crates/addon", optional = true }
 
 bedrockrs_form = { path = "crates/form" }
 
-bedrockrs_world = { path = "crates/world", optional = true, features = ["default-impl"] }
+bedrockrs_level = { path = "crates/level", optional = true, features = ["default-impl"] }
 uuid = { version = "1.11.0", features = ["v4"] }
 nbtx = { git = "https://github.com/bedrock-crustaceans/nbtx" }
 
@@ -26,11 +26,11 @@ nbtx = { git = "https://github.com/bedrock-crustaceans/nbtx" }
 tokio = { version = "1.40", features = ["full"] }
 
 [features]
-full = ["addon", "proto", "world"]
+full = ["addon", "proto", "level"]
 
 addon = ["dep:bedrockrs_addon"]
 proto = ["dep:bedrockrs_proto", "dep:bedrockrs_proto_core", "dep:bedrockrs_macros"]
-world = ["dep:bedrockrs_world"]
+level = ["dep:bedrockrs_level"]
 
 [[example]]
 name = "proto_server"

@@ -1,8 +1,11 @@
 //! r/20_u7
 
-pub mod gamepackets;
-pub mod helper;
+pub mod enums;
+mod gamepackets;
+mod helper;
+pub mod info;
 pub mod packets;
 pub mod types;
-pub mod info;
-pub mod enums;
+
+pub use gamepackets::*;
+pub use helper::*;
