@@ -21,7 +21,7 @@ macro_rules! impl_sub_client {
                     3 => Ok(SubClientID::Client4),
                     other => Err(ProtoCodecError::InvalidEnumID(
                         format!("{other:?}"),
-                        String::from("SubClientID"),
+                        "SubClientID",
                     )),
                 }
             }

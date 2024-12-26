@@ -54,7 +54,7 @@ impl ProtoCodec for AnimatePlayerPacket {
             other => {
                 return Err(ProtoCodecError::InvalidEnumID(
                     format!("{other:?}"),
-                    String::from("AnimateAction"),
+                    "AnimateAction",
                 ))
             }
         };

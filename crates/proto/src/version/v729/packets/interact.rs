@@ -54,7 +54,7 @@ impl ProtoCodec for InteractPacket {
             other => {
                 return Err(ProtoCodecError::InvalidEnumID(
                     format!("{other:?}"),
-                    String::from("InteractAction"),
+                    "InteractAction",
                 ))
             }
         };
