@@ -15,6 +15,8 @@ use uuid::Error as UuidError;
 pub enum ProtoCodecError {
     #[error("IOError occurred: {0}")]
     IOError(#[from] IOError),
+    #[error("Unread bytes remaining: {0} bytes left")]
+    LeftOvers(usize),
     #[error("NbtError: {0}")]
     NbtError(#[from] NbtError),
     #[error("Error while reading UTF8 encoded String: {0}")]
