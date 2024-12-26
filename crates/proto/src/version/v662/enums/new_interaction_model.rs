@@ -1,9 +1,9 @@
 use bedrockrs_macros::ProtoCodec;
 
 #[derive(ProtoCodec, Clone, Debug)]
-#[enum_repr(i32)]
+#[enum_repr(u32)]
 #[enum_endianness(var)]
-#[repr(i32)]
+#[repr(u32)]
 pub enum NewInteractionModel {
     Touch = 0,
     Crosshair = 1,
