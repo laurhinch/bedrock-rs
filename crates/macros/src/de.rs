@@ -132,7 +132,6 @@ pub fn build_de_struct(data_struct: &DataStruct) -> TokenStream {
 }
 
 pub fn build_de_enum(data_enum: &DataEnum, attrs: &[Attribute], name: Ident) -> TokenStream {
-    
     let flags = get_attrs(attrs).expect("Error while getting attrs");
 
     if let (Some(repr), endian) = (flags.enum_repr, flags.enum_endianness) {

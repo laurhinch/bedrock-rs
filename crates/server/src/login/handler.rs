@@ -1,3 +1,1 @@
-pub trait LoginHandler {
-
-}
+pub trait LoginHandler {}

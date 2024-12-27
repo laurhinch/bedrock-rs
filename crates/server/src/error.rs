@@ -1,10 +1,8 @@
+use bedrockrs_proto::error::ConnectionError;
 use std::error::Error;
 use thiserror::Error;
-use bedrockrs_proto::error::ConnectionError;
 
-pub enum StartError {
-    
-}
+pub enum StartError {}
 
 #[derive(Error, Debug)]
 pub enum LoginError {
@@ -17,4 +15,3 @@ pub enum LoginError {
     #[error("Format Error: {0}")]
     FormatError(String),
 }
-

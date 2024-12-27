@@ -1,8 +1,8 @@
-use std::error::Error;
-use bedrockrs_proto::listener::Listener;
-use shipyard::World;
 use crate::error::LoginError;
 use crate::login::login;
+use bedrockrs_proto::listener::Listener;
+use shipyard::World;
+use std::error::Error;
 
 pub mod builder;
 
@@ -27,7 +27,7 @@ impl Server {
             listener.stop().await.expect("TODO: panic message");
         }
     }
-    
+
     pub async fn accept(&mut self) -> Result<(), LoginError> {
         todo!()
     }

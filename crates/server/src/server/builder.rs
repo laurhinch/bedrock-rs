@@ -13,17 +13,17 @@ impl ServerBuilder {
     pub fn new() -> ServerBuilder {
         Self::default()
     }
-    
+
     pub fn name(mut self, name: &str) -> ServerBuilder {
         self.name = name.to_owned();
         self
     }
-    
+
     pub fn sub_name(mut self, sub_name: &str) -> ServerBuilder {
         self.sub_name = sub_name.to_owned();
         self
     }
-    
+
     pub fn listener(mut self, addr: SocketAddr) -> ServerBuilder {
         self.listeners_info.push(addr);
         self
@@ -31,22 +31,29 @@ impl ServerBuilder {
 
     pub async fn build(mut self) -> Server {
         if self.listeners_info.is_empty() {
-            self.listeners_info.push(SocketAddr::new(IpAddr::V4(Ipv4Addr::new(127, 0, 0, 0)), 19132));
+            self.listeners_info.push(SocketAddr::new(
+                IpAddr::V4(Ipv4Addr::new(127, 0, 0, 0)),
+                19132,
+            ));
         }
-        
+
         let mut listeners = Vec::with_capacity(self.listeners_info.len());
-        
+
         for addr in self.listeners_info {
-            listeners.push(Listener::new_raknet(
-                self.name.clone(),
-                self.sub_name.clone(),
-                String::from("1.21.0"),
-                self.max_player,
-                0,
-                addr,
-                false,
-            ).await.unwrap())
-        };
+            listeners.push(
+                Listener::new_raknet(
+                    self.name.clone(),
+                    self.sub_name.clone(),
+                    String::from("1.21.0"),
+                    self.max_player,
+                    0,
+                    addr,
+                    false,
+                )
+                .await
+                .unwrap(),
+            )
+        }
 
         Server {
             listeners,
