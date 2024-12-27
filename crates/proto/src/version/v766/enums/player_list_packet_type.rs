@@ -42,7 +42,8 @@ impl ProtoCodec for PlayerListPacketType {
         match self {
             PlayerListPacketType::Add { add_player_list } => {
                 i8::proto_serialize(&0, stream)?;
-                <u32 as ProtoCodecVAR>::proto_serialize(add_player_list.len().try_into()?, stream)?;
+                let len: u32 = add_player_list.len().try_into()?;
+                <u32 as ProtoCodecVAR>::proto_serialize(&len, stream)?;
                 
                 for i in add_player_list {
                     i.uuid.proto_serialize(stream)?;
@@ -65,7 +66,8 @@ impl ProtoCodec for PlayerListPacketType {
             },
             PlayerListPacketType::Remove { remove_player_list } => {
                 i8::proto_serialize(&1, stream)?;
-                <u32 as ProtoCodecVAR>::proto_serialize(remove_player_list.len().try_into()?, stream)?;
+                let len = remove_player_list.len().try_into()?;
+                <u32 as ProtoCodecVAR>::proto_serialize(&len, stream)?;
                 
                 for i in remove_player_list {
                     i.proto_serialize(stream)?

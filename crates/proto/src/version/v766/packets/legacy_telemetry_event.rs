@@ -164,7 +164,6 @@ pub enum Type {
         item_id: i32,
         #[endianness(var)]
         item_aux: i32,
-        #[endianness(var)]
         use_method: ItemUseMethod,
         #[endianness(var)]
         count: i32,

@@ -1,6 +1,5 @@
 use std::io::{Cursor, Read};
 use byteorder::{ReadBytesExt, WriteBytesExt};
-use tokio::io::AsyncWriteExt;
 use crate::version::v662::enums::ItemStackNetResult;
 use bedrockrs_proto_core::error::ProtoCodecError;
 use bedrockrs_proto_core::{ProtoCodec, ProtoCodecVAR};
@@ -20,7 +19,7 @@ impl ProtoCodec for ItemStackResponseInfo {
         let mut result_cursor = Cursor::new(result_stream.as_slice());
         
         stream.write_i8(result_cursor.read_i8()?)?;
-        <i32 as ProtoCodecVAR>::proto_serialize(self.client_request_id, stream)?;
+        <i32 as ProtoCodecVAR>::proto_serialize(&self.client_request_id, stream)?;
         result_cursor.read_to_end(stream)?;
         
         Ok(())
@@ -31,10 +30,10 @@ impl ProtoCodec for ItemStackResponseInfo {
         
         result_stream.write_i8(stream.read_i8()?)?;
         let client_request_id = <i32 as ProtoCodecVAR>::proto_deserialize(stream)?;
-        stream.read_to_end(result_stream)?;
+        stream.read_to_end(&mut result_stream)?;
         
-        let result_cursor = Cursor::new(result_stream.as_slice());
-        let result = ItemStackNetResult::proto_deserialize(result_cursor)?;
+        let mut result_cursor = Cursor::new(result_stream.as_slice());
+        let result = ItemStackNetResult::proto_deserialize(&mut result_cursor)?;
         
         Ok(Self {
             result,

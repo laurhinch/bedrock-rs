@@ -12,7 +12,6 @@ use bedrockrs_proto_core::{ProtoCodec, ProtoCodecLE, ProtoCodecVAR};
 use std::io::Cursor;
 use vek::{Vec2, Vec3};
 
-#[repr(u128)]
 pub enum PlayerAuthInputFlags {
     Ascend = 1 << 0,
     Descend = 1 << 1,
