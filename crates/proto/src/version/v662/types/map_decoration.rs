@@ -46,5 +46,5 @@ pub struct MapDecoration {
     pub y: i8,
     pub label: String,
     #[endianness(var)]
-    pub color_argb: u32
+    pub color_argb: u32,
 }

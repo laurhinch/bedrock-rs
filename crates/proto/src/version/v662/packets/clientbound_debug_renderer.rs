@@ -1,5 +1,5 @@
-use vek::Vec3;
 use bedrockrs_macros::{gamepacket, ProtoCodec};
+use vek::Vec3;
 
 #[derive(ProtoCodec, Clone, Debug)]
 #[enum_repr(u32)]
@@ -21,7 +21,7 @@ pub enum Type {
         #[endianness(le)]
         a: f32,
         #[endianness(le)]
-        millisecond_duration: u64
+        millisecond_duration: u64,
     } = 2,
 }
 

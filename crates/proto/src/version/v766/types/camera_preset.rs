@@ -1,5 +1,5 @@
-use vek::{Vec2, Vec3};
 use bedrockrs_macros::ProtoCodec;
+use vek::{Vec2, Vec3};
 
 #[derive(ProtoCodec, Clone, Debug)]
 #[enum_repr(i8)]
@@ -24,15 +24,15 @@ pub struct CameraPresetAimAssist {
 pub struct CameraPreset {
     pub name: String,
     pub inherit_from: String,
-    #[endianness(le)] 
+    #[endianness(le)]
     pub pos_x: Option<f32>,
-    #[endianness(le)] 
+    #[endianness(le)]
     pub pos_y: Option<f32>,
-    #[endianness(le)] 
+    #[endianness(le)]
     pub pos_z: Option<f32>,
-    #[endianness(le)] 
+    #[endianness(le)]
     pub rot_x: Option<f32>,
-    #[endianness(le)] 
+    #[endianness(le)]
     pub rot_y: Option<f32>,
     #[endianness(le)]
     pub rotation_speed: Option<f32>,

@@ -15,7 +15,7 @@ pub struct AddPlayerListEntry {
     pub is_teacher: bool,
     pub is_host: bool,
     pub is_sub_client: bool,
-    
+
 }
 
 #[derive(ProtoCodec, Clone, Debug)]

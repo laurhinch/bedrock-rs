@@ -3,9 +3,9 @@ use crate::version::v662::types::CommandOriginData;
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 use bedrockrs_proto_core::error::ProtoCodecError;
 use bedrockrs_proto_core::{ProtoCodec, ProtoCodecVAR};
+use byteorder::{ReadBytesExt, WriteBytesExt};
 use std::io::{Cursor, Read};
 use std::mem::size_of;
-use byteorder::{ReadBytesExt, WriteBytesExt};
 
 #[derive(ProtoCodec, Clone, Debug)]
 pub struct OutputMessagesEntry {
@@ -82,10 +82,10 @@ impl ProtoCodec for CommandOutputPacket {
             + self.success_count.get_size_prediction()
             + size_of::<u32>()
             + self
-                .output_messages
-                .iter()
-                .map(|i| i.get_size_prediction())
-                .sum::<usize>()
+            .output_messages
+            .iter()
+            .map(|i| i.get_size_prediction())
+            .sum::<usize>()
     }
 }
 

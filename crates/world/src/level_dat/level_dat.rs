@@ -1,14 +1,8 @@
 use std::collections::HashMap;
-use std::fs::File;
-use std::io::{Cursor, Read};
-use std::path::{Path, PathBuf};
-
-use byteorder::{LittleEndian, ReadBytesExt};
 
 use bedrockrs_shared::world::difficulty::Difficulty;
 use bedrockrs_shared::world::dimension::Dimension;
 
-use crate::error::WorldError;
 use crate::level_dat::abilities::LevelDatAbilities;
 
 /// A struct representing the data found in the `level.dat` and `level.dat_old` files for

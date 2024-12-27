@@ -10,6 +10,6 @@ pub struct Experiment {
 pub struct Experiments {
     #[vec_repr(u32)]
     #[vec_endianness(le)]
-    pub experiments: Vec<Experiment>, 
+    pub experiments: Vec<Experiment>,
     pub ever_toggled: bool,
 }

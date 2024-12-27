@@ -1,7 +1,7 @@
 use crate::version::v662::enums::PlayerRespawnState;
 use crate::version::v662::types::ActorRuntimeID;
-use vek::Vec3;
 use bedrockrs_macros::{gamepacket, ProtoCodec};
+use vek::Vec3;
 
 #[gamepacket(id = 45)]
 #[derive(ProtoCodec, Clone, Debug)]

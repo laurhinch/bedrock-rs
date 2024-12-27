@@ -200,8 +200,8 @@ impl ProtoCodec for LegacyTelemetryEventPacket {
 
     fn get_size_prediction(&self) -> usize {
         self.event_type.get_size_prediction()
-        + self.target_actor_id.get_size_prediction()
-        + self.use_player_id.get_size_prediction()
+            + self.target_actor_id.get_size_prediction()
+            + self.use_player_id.get_size_prediction()
     }
 }
 

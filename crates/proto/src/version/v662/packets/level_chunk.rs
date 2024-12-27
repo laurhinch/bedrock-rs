@@ -4,7 +4,7 @@ use bedrockrs_macros::{gamepacket, ProtoCodec};
 #[derive(ProtoCodec, Clone, Debug)]
 pub struct CacheBlobEntry {
     #[endianness(var)]
-    blob: u64
+    blob: u64,
 }
 
 #[gamepacket(id = 58)]

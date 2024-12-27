@@ -1,11 +1,12 @@
 use crate::version::v662::types::{
     ActorUniqueID, BlockPos, MapDecoration, MapItemTrackedActorUniqueID,
 };
-use bedrockrs_macros::gamepacket;
+use bedrockrs_macros::{gamepacket, ProtoCodec};
 use bedrockrs_proto_core::error::ProtoCodecError;
 use bedrockrs_proto_core::{ProtoCodec, ProtoCodecVAR};
-use std::io::Cursor;
+use std::io::{Cursor, Read};
 use std::mem::size_of;
+use varint_rs::{VarintReader, VarintWriter};
 
 #[repr(u32)]
 pub enum Type {

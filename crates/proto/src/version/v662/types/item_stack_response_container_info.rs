@@ -6,5 +6,5 @@ pub struct ItemStackResponseContainerInfo {
     pub container_net_id: i8,
     #[vec_repr(u32)]
     #[vec_endianness(var)]
-    pub slots: Vec<ItemStackResponseSlotInfo>
+    pub slots: Vec<ItemStackResponseSlotInfo>,
 }

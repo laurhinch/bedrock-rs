@@ -5,5 +5,5 @@ use bedrockrs_macros::ProtoCodec;
 pub struct CameraPresets {
     #[vec_repr(u32)]
     #[vec_endianness(var)]
-    pub presets: Vec<CameraPreset>
+    pub presets: Vec<CameraPreset>,
 }

@@ -32,7 +32,7 @@ impl ProtoCodec for NetworkItemStackDescriptor {
 
     fn proto_deserialize(stream: &mut Cursor<&[u8]>) -> Result<Self, ProtoCodecError> {
         let id = <i32 as ProtoCodecVAR>::proto_deserialize(stream)?;
-        
+
         let (stack_size, aux_value, net_id_variant, block_runtime_id, user_data_buffer) = match id {
             0 => (None, None, None, None, None),
             _ => {
@@ -41,11 +41,11 @@ impl ProtoCodec for NetworkItemStackDescriptor {
                 let net_id_variant = <Option<i32> as ProtoCodecVAR>::proto_deserialize(stream)?;
                 let block_runtime_id = <i32 as ProtoCodecVAR>::proto_deserialize(stream)?;
                 let user_data_buffer = String::proto_deserialize(stream)?;
-                
+
                 (Some(stack_size), Some(aux_value), Some(net_id_variant), Some(block_runtime_id), Some(user_data_buffer))
             },
         };
-        
+
         Ok(Self {
             id,
             stack_size,
@@ -70,3 +70,5 @@ impl ProtoCodec for NetworkItemStackDescriptor {
             }
     }
 }
+
+// TODO: impl ProtoCodec

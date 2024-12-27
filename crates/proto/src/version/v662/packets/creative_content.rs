@@ -13,5 +13,5 @@ pub struct WriteEntry {
 pub struct CreativeContentPacket {
     #[vec_repr(u32)]
     #[vec_endianness(var)]
-    pub write_entries: Vec<WriteEntry>
+    pub write_entries: Vec<WriteEntry>,
 }

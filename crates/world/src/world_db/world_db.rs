@@ -1,7 +1,7 @@
 use mojang_leveldb::{error::DBError, Options, ReadOptions, WriteBatch, WriteOptions, DB};
+use std::collections::HashMap;
 use std::fmt::{Debug, Formatter};
 use std::path::Path;
-use std::{collections::HashMap, path::PathBuf};
 use uuid::Uuid;
 
 use bedrockrs_shared::world::dimension::Dimension;

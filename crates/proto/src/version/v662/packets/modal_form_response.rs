@@ -7,5 +7,5 @@ pub struct ModalFormResponsePacket {
     #[endianness(var)]
     pub form_id: u32,
     pub json_response: Option<String>,
-    pub form_cancel_reason: Option<ModalFormCancelReason>
+    pub form_cancel_reason: Option<ModalFormCancelReason>,
 }

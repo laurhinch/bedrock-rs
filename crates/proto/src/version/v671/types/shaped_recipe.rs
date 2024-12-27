@@ -81,7 +81,7 @@ impl ProtoCodec for ShapedRecipe {
             recipe_id,
             recipe_tag,
             priority,
-            assume_symmetry
+            assume_symmetry,
         })
     }
 
