@@ -2,7 +2,7 @@ pub mod codec;
 pub mod compression;
 pub mod connection;
 pub mod encryption;
-pub(super) mod error;
+pub mod error;
 mod helper;
 pub mod info;
 pub mod listener;

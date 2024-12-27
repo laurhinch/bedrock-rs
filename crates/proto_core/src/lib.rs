@@ -8,7 +8,7 @@ mod endian;
 use crate::sub_client::SubClientID;
 pub use endian::*;
 
-pub(super) mod error;
+pub mod error;
 pub mod sub_client;
 pub mod types;
 
