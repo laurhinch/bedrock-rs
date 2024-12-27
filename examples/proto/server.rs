@@ -1,16 +1,17 @@
+mod parsing;
+
 use bedrockrs::proto::connection::Connection;
 use bedrockrs::proto::listener::Listener;
 use bedrockrs_proto::compression::Compression;
-use bedrockrs_proto::v729::gamepackets::GamePackets;
-use bedrockrs_proto::v729::helper::ProtoHelperV729;
-use bedrockrs_proto::v729::packets::network_settings::NetworkSettingsPacket;
-use bedrockrs_proto::v729::packets::play_status::PlayStatusPacket;
-use bedrockrs_proto::v729::packets::player_disconnect::{DisconnectPlayerPacket, DisconnectReason};
-use bedrockrs_proto::v729::packets::resource_packs_info::ResourcePacksInfoPacket;
-use bedrockrs_proto::v729::packets::resource_packs_stack::ResourcePacksStackPacket;
-use bedrockrs_proto::v729::types::base_game_version::BaseGameVersion;
-use bedrockrs_proto::v729::types::experiments::Experiments;
-use bedrockrs_proto::v729::types::play_status::PlayStatusType;
+use bedrockrs_proto::v662::GamePackets;
+use bedrockrs_proto::v662::ProtoHelperV662;
+use bedrockrs_proto::v662::packets::NetworkSettingsPacket;
+use bedrockrs_proto::v662::packets::PlayStatusPacket;
+use bedrockrs_proto::v662::packets::{DisconnectPacket};
+use bedrockrs_proto::v662::packets::ResourcePacksInfoPacket;
+use bedrockrs_proto::v662::types::BaseGameVersion;
+use bedrockrs_proto::v662::types::Experiments;
+use bedrockrs_proto::v662::types::;
 use std::net::{SocketAddr, SocketAddrV4};
 use std::str::FromStr;
 use tokio::time::Instant;
@@ -23,7 +24,7 @@ async fn main() {
         "1.0".to_string(),
         100,
         10,
-        SocketAddr::V4(SocketAddrV4::from_str("127.0.0.1:19132").unwrap()),
+        "127.0.0.1:19132".parse().unwrap(),
         false,
     )
     .await
@@ -44,13 +45,13 @@ async fn handle_login(mut conn: Connection) {
     let time_start = Instant::now();
 
     // NetworkSettingsRequest
-    conn.recv::<ProtoHelperV729>().await.unwrap();
+    conn.recv::<ProtoHelperV662>().await.unwrap();
     println!("NetworkSettingsRequest");
 
     let compression = Compression::None;
 
     // NetworkSettings
-    conn.send::<ProtoHelperV729>(&[GamePackets::NetworkSettings(NetworkSettingsPacket {
+    conn.send::<ProtoHelperV662>(&[GamePackets::NetworkSettings(NetworkSettingsPacket {
         compression_threshold: 1,
         compression_algorithm: compression.id_u16(),
         client_throttle: false,
@@ -68,7 +69,7 @@ async fn handle_login(mut conn: Connection) {
     println!("Login");
 
     conn.send::<ProtoHelperV729>(&[
-        GamePackets::PlayStatus(PlayStatusPacket {
+        GamePackets::PlaySatus(PlayStatusPacket {
             status: PlayStatusType::LoginSuccess,
         }),
         GamePackets::ResourcePacksInfo(ResourcePacksInfoPacket {
@@ -101,12 +102,12 @@ async fn handle_login(mut conn: Connection) {
     println!("{:#?}", conn.recv::<ProtoHelperV729>().await.unwrap());
     println!("ResourcePackClientResponse");
 
-    conn.send::<ProtoHelperV729>(&[GamePackets::DisconnectPlayer(DisconnectPlayerPacket {
-        reason: DisconnectReason::Unknown,
-        message: Some(String::from("IDK")),
-    })])
-    .await
-    .unwrap();
+    // conn.send::<ProtoHelperV729>(&[GamePackets::DisconnectPlayer(DisconnectPlayerPacket {
+    //     reason: DisconnectReason::Unknown,
+    //     message: Some(String::from("IDK")),
+    // })])
+    // .await
+    // .unwrap();
 
     // let packet1 = StartGamePacket {
     //     target_actor_id: ActorUniqueID(609),

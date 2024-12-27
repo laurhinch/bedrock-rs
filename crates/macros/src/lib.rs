@@ -34,7 +34,7 @@ pub fn proto_codec_derive(item: proc_macro::TokenStream) -> proc_macro::TokenStr
         Data::Struct(v) => (build_ser_struct(&v), build_de_struct(&v)),
         Data::Enum(v) => (
             build_ser_enum(&v, input.attrs.as_slice()),
-            build_de_enum(&v, input.attrs.as_slice()),
+            build_de_enum(&v, input.attrs.as_slice(), name.clone()),
         ),
         Data::Union(_) => {
             return proc_macro::TokenStream::from(quote! {

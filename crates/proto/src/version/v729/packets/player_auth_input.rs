@@ -72,7 +72,7 @@ impl ProtoCodec for PlayerAuthInputPacket {
             other => {
                 return Err(ProtoCodecError::InvalidEnumID(
                     other.to_string(),
-                    String::from("PlayMode"),
+                    "PlayMode",
                 ))
             }
         };

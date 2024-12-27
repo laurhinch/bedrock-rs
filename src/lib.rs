@@ -7,6 +7,7 @@ pub mod core {
 #[cfg(feature = "proto")]
 pub mod proto {
     pub use ::bedrockrs_proto::*;
+    pub use ::bedrockrs_proto::codec::*;
     pub use ::bedrockrs_proto_core::GamePacket;
 
     pub mod codec {
