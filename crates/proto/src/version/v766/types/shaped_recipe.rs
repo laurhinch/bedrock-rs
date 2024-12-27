@@ -1,10 +1,10 @@
+use crate::v766::types::RecipeUnlockingRequirement;
 use crate::version::v662::types::{NetworkItemInstanceDescriptor, RecipeIngredient};
 use bedrockrs_proto_core::error::ProtoCodecError;
 use bedrockrs_proto_core::{ProtoCodec, ProtoCodecVAR};
 use std::io::Cursor;
 use std::mem::size_of;
 use uuid::Uuid;
-use crate::v766::types::RecipeUnlockingRequirement;
 
 #[derive(Clone, Debug)]
 pub struct ShapedRecipe {
@@ -95,21 +95,21 @@ impl ProtoCodec for ShapedRecipe {
             + size_of::<u32>()
             + size_of::<u32>()
             + self
-                .ingredient_grid
+            .ingredient_grid
+            .iter()
+            .map(|y| y
                 .iter()
-                .map(|y| y
-                    .iter()
-                    .map(|i| 
-                        i.get_size_prediction())
-                    .sum::<usize>())
-                .sum::<usize>()
-        + size_of::<u32>()
-        + self.production_list.iter().map(|y| y.get_size_prediction()).sum::<usize>()
-        + self.recipe_id.get_size_prediction()
-        + self.recipe_tag.get_size_prediction()
-        + self.priority.get_size_prediction()
-        + self.assume_symmetry.get_size_prediction()
-        + self.unlocking_requirement.get_size_prediction()
+                .map(|i|
+                    i.get_size_prediction())
+                .sum::<usize>())
+            .sum::<usize>()
+            + size_of::<u32>()
+            + self.production_list.iter().map(|y| y.get_size_prediction()).sum::<usize>()
+            + self.recipe_id.get_size_prediction()
+            + self.recipe_tag.get_size_prediction()
+            + self.priority.get_size_prediction()
+            + self.assume_symmetry.get_size_prediction()
+            + self.unlocking_requirement.get_size_prediction()
     }
 }
 

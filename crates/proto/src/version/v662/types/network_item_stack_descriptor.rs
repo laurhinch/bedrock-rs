@@ -43,7 +43,7 @@ impl ProtoCodec for NetworkItemStackDescriptor {
                 let user_data_buffer = String::proto_deserialize(stream)?;
 
                 (Some(stack_size), Some(aux_value), Some(net_id_variant), Some(block_runtime_id), Some(user_data_buffer))
-            },
+            }
         };
 
         Ok(Self {

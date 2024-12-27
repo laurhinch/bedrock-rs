@@ -101,12 +101,12 @@ impl ProtoCodec for PackedItemUseLegacyInventoryTransaction {
     fn get_size_prediction(&self) -> usize {
         ProtoCodecVAR::get_size_prediction(&self.id)
             + match &self.id {
-                0 => 0,
-                _ => {
-                    let vec = self.container_slots.as_ref().unwrap();
-                    vec.len() + vec.iter().map(|i| i.get_size_prediction()).sum::<usize>()
-                }
+            0 => 0,
+            _ => {
+                let vec = self.container_slots.as_ref().unwrap();
+                vec.len() + vec.iter().map(|i| i.get_size_prediction()).sum::<usize>()
             }
+        }
             + self.action.get_size_prediction()
             + self.action_type.get_size_prediction()
             + self.position.get_size_prediction()

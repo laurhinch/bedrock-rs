@@ -1,12 +1,11 @@
 use crate::version::v662::types::{
     ActorUniqueID, BlockPos, MapDecoration, MapItemTrackedActorUniqueID,
 };
-use bedrockrs_macros::{gamepacket, ProtoCodec};
+use bedrockrs_macros::gamepacket;
 use bedrockrs_proto_core::error::ProtoCodecError;
 use bedrockrs_proto_core::{ProtoCodec, ProtoCodecVAR};
-use std::io::{Cursor, Read};
+use std::io::Cursor;
 use std::mem::size_of;
-use varint_rs::{VarintReader, VarintWriter};
 
 #[repr(u32)]
 pub enum Type {
@@ -205,63 +204,63 @@ impl ProtoCodec for ClientboundMapItemDataPacket {
             + self.is_locked.get_size_prediction()
             + self.map_origin.get_size_prediction()
             + match &self.type_flags & Type::Creation as u32 != 0 {
-                true => {
-                    size_of::<u32>()
-                        + self
-                            .map_id_list
-                            .as_ref()
-                            .unwrap()
-                            .iter()
-                            .map(|i| i.get_size_prediction())
-                            .sum::<usize>()
-                }
-                false => 0,
+            true => {
+                size_of::<u32>()
+                    + self
+                    .map_id_list
+                    .as_ref()
+                    .unwrap()
+                    .iter()
+                    .map(|i| i.get_size_prediction())
+                    .sum::<usize>()
             }
+            false => 0,
+        }
             + match &self.type_flags
-                & (Type::DecorationUpdate as u32
-                    | Type::TextureUpdate as u32
-                    | Type::Creation as u32)
-                != 0
-            {
-                true => self.scale.as_ref().unwrap().get_size_prediction(),
-                false => 0,
-            }
+            & (Type::DecorationUpdate as u32
+            | Type::TextureUpdate as u32
+            | Type::Creation as u32)
+            != 0
+        {
+            true => self.scale.as_ref().unwrap().get_size_prediction(),
+            false => 0,
+        }
             + match &self.type_flags & Type::DecorationUpdate as u32 != 0 {
-                true => {
-                    size_of::<u32>()
-                        + self
-                            .actor_ids
-                            .as_ref()
-                            .unwrap()
-                            .iter()
-                            .map(|i| i.get_size_prediction())
-                            .sum::<usize>()
-                        + size_of::<u32>()
-                        + self
-                            .decoration_list
-                            .as_ref()
-                            .unwrap()
-                            .iter()
-                            .map(|i| i.get_size_prediction())
-                            .sum::<usize>()
-                }
-                false => 0,
+            true => {
+                size_of::<u32>()
+                    + self
+                    .actor_ids
+                    .as_ref()
+                    .unwrap()
+                    .iter()
+                    .map(|i| i.get_size_prediction())
+                    .sum::<usize>()
+                    + size_of::<u32>()
+                    + self
+                    .decoration_list
+                    .as_ref()
+                    .unwrap()
+                    .iter()
+                    .map(|i| i.get_size_prediction())
+                    .sum::<usize>()
             }
+            false => 0,
+        }
             + match &self.type_flags & Type::TextureUpdate as u32 != 0 {
-                true => {
-                    <i32 as ProtoCodecVAR>::get_size_prediction(&self.texture_width.unwrap())
-                        + <i32 as ProtoCodecVAR>::get_size_prediction(&self.texture_height.unwrap())
-                        + <i32 as ProtoCodecVAR>::get_size_prediction(
-                            &self.x_tex_coordinate.unwrap(),
-                        )
-                        + <i32 as ProtoCodecVAR>::get_size_prediction(
-                            &self.y_tex_coordinate.unwrap(),
-                        )
-                        + size_of::<u32>()
-                        + &self.pixels.as_ref().unwrap().len() * size_of::<u32>()
-                }
-                false => 0,
+            true => {
+                <i32 as ProtoCodecVAR>::get_size_prediction(&self.texture_width.unwrap())
+                    + <i32 as ProtoCodecVAR>::get_size_prediction(&self.texture_height.unwrap())
+                    + <i32 as ProtoCodecVAR>::get_size_prediction(
+                    &self.x_tex_coordinate.unwrap(),
+                )
+                    + <i32 as ProtoCodecVAR>::get_size_prediction(
+                    &self.y_tex_coordinate.unwrap(),
+                )
+                    + size_of::<u32>()
+                    + &self.pixels.as_ref().unwrap().len() * size_of::<u32>()
             }
+            false => 0,
+        }
     }
 }
 

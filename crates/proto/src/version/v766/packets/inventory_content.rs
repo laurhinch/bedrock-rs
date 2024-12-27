@@ -1,6 +1,6 @@
+use crate::v766::types::FullContainerName;
 use crate::version::v662::types::NetworkItemStackDescriptor;
 use bedrockrs_macros::{gamepacket, ProtoCodec};
-use crate::v766::types::FullContainerName;
 
 #[gamepacket(id = 49)]
 #[derive(ProtoCodec, Clone, Debug)]

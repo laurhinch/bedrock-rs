@@ -1,7 +1,7 @@
 use crate::version::v662::types::{NetworkItemInstanceDescriptor, ShapedChemistryRecipe, ShapedRecipe, ShapelessRecipe, SmithingTransformRecipe, SmithingTrimRecipe};
+use crate::version::v766::types::UserDataShapelessRecipe;
 use bedrockrs_macros::ProtoCodec;
 use uuid::Uuid;
-use crate::version::v766::types::UserDataShapelessRecipe;
 
 #[derive(ProtoCodec, Clone, Debug)]
 #[enum_repr(i32)]
@@ -55,11 +55,11 @@ pub enum CraftingDataEntryType {
     SmithingTransformRecipe {
         smithing_transform_recipe: SmithingTransformRecipe,
         #[endianness(var)]
-        net_id: i32
+        net_id: i32,
     } = 8,
     SmithingTrimRecipe {
         smithing_trim_recipe: SmithingTrimRecipe,
         #[endianness(var)]
-        net_id: i32
+        net_id: i32,
     } = 9,
 }
