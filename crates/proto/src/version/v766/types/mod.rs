@@ -20,3 +20,8 @@ export!(item_stack_response_container_info);
 export!(item_stack_response_slot_info);
 export!(level_settings);
 export!(packed_item_use_legacy_inventory_transaction);
+export!(player_block_action_data);
+export!(player_input_tick);
+export!(shaped_chemistry_recipe);
+export!(shaped_recipe);
+export!(shapeless_recipe);
