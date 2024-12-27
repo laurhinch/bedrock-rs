@@ -1,4 +1,3 @@
-use crate::version::v662::enums::MolangVersion;
 use bedrockrs_macros::ProtoCodec;
 
 #[derive(ProtoCodec, Clone, Debug)]

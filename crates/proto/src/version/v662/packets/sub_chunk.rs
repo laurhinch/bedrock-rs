@@ -33,10 +33,10 @@ pub enum SubChunkRequestResult {
 pub struct SubChunkDataEntry {
     pub sub_chunk_pos_offset: SubChunkPosOffset,
     pub sub_chunk_request_result: SubChunkRequestResult,
-    pub serialized_sub_chunk: Option<String>, // If sub_chunk_request_result == SuccessAllAir, or cache_enabled
+    pub serialized_sub_chunk: Option<String>, // If sub_chunk_request_result == SuccessAllAir, or cache_enabled == false
     pub height_map_data_type: HeightMapDataType,
     pub sub_chunk_height_map: Option<[[i8; 16]; 16]>, // If height_map_data_type == HasData (vec sizes are i8)
-    pub blob_id: Option<u64>,                         // If cache_enabled
+    pub blob_id: Option<u64>,                         // If cache_enabled == true
 }
 
 #[gamepacket(id = 174)]
@@ -58,7 +58,7 @@ impl ProtoCodec for SubChunkPacket {
             i.sub_chunk_pos_offset.proto_serialize(stream)?;
             i.sub_chunk_request_result.proto_serialize(stream)?;
             if i.sub_chunk_request_result == SubChunkRequestResult::SuccessAllAir
-                || self.cache_enabled
+                || !self.cache_enabled
             {
                 i.serialized_sub_chunk
                     .as_ref()

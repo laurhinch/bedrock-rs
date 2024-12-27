@@ -13,6 +13,6 @@ pub struct UpdateBlockSyncedPacket {
     #[endianness(var)]
     pub later: u32,
     #[endianness(var)]
-    pub unique_actor_id: i64,
+    pub unique_actor_id: u64,
     pub actor_sync_message: ActorBlockSyncMessageID,
 }

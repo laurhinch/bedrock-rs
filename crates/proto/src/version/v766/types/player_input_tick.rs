@@ -1,7 +1,7 @@
 use bedrockrs_macros::ProtoCodec;
 
 #[derive(ProtoCodec, Clone, Debug)]
-pub struct ItemStackNetIdVariant {
+pub struct PlayerInputTick {
     #[endianness(var)]
-    pub raw_id: i32
+    pub tick: u64,
 }

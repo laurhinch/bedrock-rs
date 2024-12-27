@@ -8,9 +8,9 @@ pub struct ItemInstanceUserData {
     #[nbt]
     pub tags: nbtx::Value, // TODO: NBT Structure
     #[vec_repr(u32)]
-    #[vec_endianness(le)]
+    #[vec_endianness(var)]
     pub can_place_on: Vec<String>,
     #[vec_repr(u32)]
-    #[vec_endianness(le)]
+    #[vec_endianness(var)]
     pub can_break: Vec<String>,
 }

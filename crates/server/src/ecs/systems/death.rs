@@ -1,5 +1,3 @@
 use shipyard::World;
 
-pub fn death() {
-    
-}
+pub fn death() {}
