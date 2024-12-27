@@ -1,5 +1,4 @@
 use std::io::{Cursor, Read};
-use serde::de::Unexpected::Str;
 use uuid::Uuid;
 use varint_rs::{VarintReader, VarintWriter};
 use bedrockrs_proto_core::error::ProtoCodecError;

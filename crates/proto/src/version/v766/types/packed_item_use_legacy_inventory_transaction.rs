@@ -1,7 +1,6 @@
-use crate::v662::types::InventoryTransaction;
 use crate::version::v662::enums::ItemUseInventoryTransactionType;
 use crate::version::v662::types::{
-    InventoryAction, NetworkBlockPosition, NetworkItemStackDescriptor,
+    InventoryTransaction, NetworkBlockPosition, NetworkItemStackDescriptor,
 };
 use bedrockrs_macros::ProtoCodec;
 use bedrockrs_proto_core::error::ProtoCodecError;

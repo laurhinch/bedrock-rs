@@ -1,6 +1,5 @@
 use bedrockrs_macros::ProtoCodec;
 use crate::v766::types::FullContainerName;
-use crate::version::v662::enums::ContainerName;
 
 #[derive(ProtoCodec, Clone, Debug)]
 pub struct ItemStackRequestSlotInfo {
