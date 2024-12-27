@@ -7,7 +7,6 @@ use bedrockrs_proto_core::{ProtoCodec, ProtoCodecVAR};
 #[derive(Clone, Debug)]
 pub struct ItemStackResponseInfo {
     pub result: ItemStackNetResult,
-    #[endianness(var)]
     pub client_request_id: i32,
 }
 

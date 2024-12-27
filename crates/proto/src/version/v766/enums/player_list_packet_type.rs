@@ -26,13 +26,9 @@ pub struct AddPlayerListEntry {
 #[repr(i8)]
 pub enum PlayerListPacketType {
     Add {
-        #[vec_repr(u32)]
-        #[vec_endianness(var)]
         add_player_list: Vec<AddPlayerListEntry>,
     } = 0,
     Remove {
-        #[vec_repr(u32)]
-        #[vec_endianness(var)]
         remove_player_list: Vec<Uuid>
     } = 1,
 }
