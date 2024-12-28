@@ -4,6 +4,11 @@ pub mod core {
     pub use ::bedrockrs_shared::*;
 }
 
+#[cfg(feature = "level")]
+pub mod level {
+    pub use ::bedrockrs_level::*;
+}
+
 #[cfg(feature = "addon")]
 pub mod addon {
     pub use ::bedrockrs_addon::*;
@@ -18,10 +23,6 @@ pub mod proto {
         pub use ::bedrockrs_proto::error::*;
         pub use ::bedrockrs_proto_core::error::*;
     }
-}
-
-#[cfg(feature = "world")]
-pub mod world {
 }
 
 #[cfg(feature = "server")]
