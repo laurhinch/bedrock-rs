@@ -5,12 +5,12 @@ use crate::level::file_interface::RawWorldTrait;
 use crate::level::sub_chunk::{SubChunkDecoder, SubChunkTrait};
 use crate::level::world_block::WorldBlockTrait;
 use crate::level_try;
-use crate::types::binary::BinaryBuffer;
 use crate::types::clear_cache::ClearCacheContainer;
 use bedrockrs_shared::world::dimension::Dimension;
 use std::collections::hash_set::Iter;
 use std::collections::HashSet;
 use std::fmt::Debug;
+use std::io::Cursor;
 use std::marker::PhantomData;
 use std::path::Path;
 use thiserror::Error;
@@ -228,7 +228,7 @@ where
                     let out = (y, None);
                     Ok(out)
                 } else {
-                    let mut bytes: BinaryBuffer = bytes.into();
+                    let mut bytes = Cursor::new(bytes);
                     let data = level_try!(
                         SubChunkDecodeError,
                         UserSubChunkDecoder::decode_bytes_as_chunk(&mut bytes, &mut self.state)

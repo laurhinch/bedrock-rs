@@ -1,4 +1,4 @@
-use crate::types::binary::BinaryBuffer;
+use std::io::Cursor;
 use vek::Vec3;
 pub type BlockLayer<T> = (Box<[u16; 4096]>, Vec<T>);
 
@@ -31,7 +31,7 @@ pub trait SubChunkDecoder {
 
     /// This function is responsible for decoding a stream of raw bytes into the intermediate structure used for creating subchunks
     fn decode_bytes_as_chunk(
-        bytes: &mut BinaryBuffer,
+        bytes: &mut Cursor<Vec<u8>>,
         state: &mut Self::UserState,
     ) -> Result<SubchunkTransitionalData<Self::BlockType>, Self::Err>;
 
@@ -100,11 +100,10 @@ pub trait SubChunkTrait: Sized {
 pub mod default_impl {
     use super::*;
     use crate::level::world_block::{BlockTransitionalState, WorldBlockTrait};
-    use crate::types::binary::BinaryInterfaceError;
     use crate::types::miner::idx_3_to_1;
-    use byteorder::LittleEndian;
+    use byteorder::{LittleEndian, ReadBytesExt, WriteBytesExt};
     use nbtx::NbtError;
-    use std::io::Cursor;
+    use std::io::{Cursor, Seek, SeekFrom, Write};
     use std::marker::PhantomData;
     use std::mem::MaybeUninit;
     use thiserror::Error;
@@ -132,8 +131,8 @@ pub mod default_impl {
         PaletteCountError,
         #[error("Failed To Slice NBT")]
         SliceError,
-        #[error("Binary Interface Error: {0}")]
-        BinaryError(#[from] BinaryInterfaceError),
+        #[error("Binary Error: {0}")]
+        BinaryError(#[from] std::io::Error),
         #[error("NBT Error: {0}")]
         NBTError(#[from] NbtError),
     }
@@ -146,30 +145,22 @@ pub mod default_impl {
         type UserState = UserState;
 
         fn decode_bytes_as_chunk(
-            bytes: &mut BinaryBuffer,
+            bytes: &mut Cursor<Vec<u8>>,
             state: &mut Self::UserState,
         ) -> Result<SubchunkTransitionalData<Self::BlockType>, Self::Err> {
-            let version = bytes
-                .read::<LittleEndian, u8>()
-                .ok_or(SubChunkDecoderError::SubChunkVersion)?;
+            let version = bytes.read_u8()?;
             if version != 8 && version != 9 {
                 return Err(SubChunkDecoderError::UnknownVersion(version));
             }
 
-            let storage_layer_count = bytes
-                .read::<LittleEndian, u8>()
-                .ok_or(SubChunkDecoderError::LayerError)?;
-            let y_index = bytes
-                .read::<LittleEndian, i8>()
-                .ok_or(SubChunkDecoderError::IndexError)?;
+            let storage_layer_count = bytes.read_u8()?;
+            let y_index = bytes.read_i8()?;
 
             let mut transitiondata =
                 SubchunkTransitionalData::new(y_index, storage_layer_count as usize);
 
             for _ in 0..storage_layer_count {
-                let palette_type = bytes
-                    .read::<LittleEndian, u8>()
-                    .ok_or(SubChunkDecoderError::PaletteError)?;
+                let palette_type = bytes.read_u8()?;
                 let network = palette_type & 0x1 == 1;
                 let bits_per_block = palette_type >> 1;
                 let blocks_per_word = 32 / bits_per_block;
@@ -179,9 +170,7 @@ pub mod default_impl {
                 let mut block_indices = Box::new([0u16; 4096]);
 
                 for _ in 0..word_count {
-                    let mut word = bytes
-                        .read::<LittleEndian, u32>()
-                        .ok_or(SubChunkDecoderError::WordError)?;
+                    let mut word = bytes.read_u32::<LittleEndian>()?;
                     for _ in 0..blocks_per_word {
                         let index: u16 = (word & mask) as u16;
                         if pos == 4096 {
@@ -193,16 +182,11 @@ pub mod default_impl {
                     }
                 }
 
-                let palette_count = bytes
-                    .read::<LittleEndian, u32>()
-                    .ok_or(SubChunkDecoderError::PaletteCountError)?;
+                let palette_count = bytes.read_u32::<LittleEndian>()?;
                 let mut blocks = Vec::with_capacity(palette_count as usize);
                 for _ in 0_usize..palette_count as usize {
-                    let cursor = &mut Cursor::new(
-                        bytes
-                            .poll_buffer()
-                            .ok_or(SubChunkDecoderError::SliceError)?,
-                    );
+                    let position = bytes.position();
+                    let cursor = &mut Cursor::new(&bytes.get_mut()[position as usize..]);
 
                     if network {
                         blocks.push(Self::BlockType::from_transition(
@@ -217,8 +201,8 @@ pub mod default_impl {
                             state,
                         ));
                     }
-                    let pos = cursor.position() as isize;
-                    bytes.rebase(pos);
+                    let pos = cursor.position();
+                    bytes.seek(SeekFrom::Start(pos))?;
                 }
                 transitiondata.new_layer((block_indices, blocks));
             }
@@ -231,46 +215,41 @@ pub mod default_impl {
             network: bool,
             state: &mut Self::UserState,
         ) -> Result<Vec<u8>, Self::Err> {
-            let mut buffer = BinaryBuffer::new();
-            buffer
-                .write::<LittleEndian, u8>(chunk_state.data_version)?
-                .write::<LittleEndian, u8>(chunk_state.layers.len() as u8)?
-                .write::<LittleEndian, i8>(chunk_state.y_level)?;
+            let mut buffer = Cursor::<Vec<u8>>::new(vec![]);
+            buffer.write_u8(chunk_state.data_version)?;
+            buffer.write_u8(chunk_state.layers.len() as u8)?;
+            buffer.write_i8(chunk_state.y_level)?;
             for layer in chunk_state.layers {
                 let bits_per_block = bits_needed_to_store(layer.1.len() as u32);
-                buffer.write::<LittleEndian, u8>(bits_per_block << (1 + (network as u8)))?;
+                buffer.write_u8(bits_per_block << (1 + (network as u8)))?;
 
                 let mut current_word = 0u32;
                 let mut bits_written = 0;
                 layer.0.iter().try_for_each(|element| {
                     let element = *element as u32;
                     if bits_written + bits_per_block > 32 {
-                        buffer.write::<LittleEndian, u32>(current_word)?;
+                        buffer.write_u32::<LittleEndian>(current_word)?;
                         current_word = 0;
                         bits_written = 0;
                     }
 
                     current_word = current_word + (element << bits_written);
                     bits_written += bits_per_block;
-                    Ok::<(), BinaryInterfaceError>(())
+                    Ok::<(), std::io::Error>(())
                 })?;
                 if bits_written != 0 {
-                    buffer.write::<LittleEndian, u32>(current_word)?;
+                    buffer.write_u32::<LittleEndian>(current_word)?;
                 }
-                buffer.write::<LittleEndian, u32>(layer.1.len() as u32)?;
+                buffer.write_u32::<LittleEndian>(layer.1.len() as u32)?;
                 for blk in layer.1 {
                     if network {
-                        buffer.write::<LittleEndian, &[u8]>(&nbtx::to_net_bytes(
-                            &blk.into_transition(state),
-                        )?)?
+                        buffer.write(&nbtx::to_net_bytes(&blk.into_transition(state))?)?
                     } else {
-                        buffer.write::<LittleEndian, &[u8]>(&nbtx::to_le_bytes(
-                            &blk.into_transition(state),
-                        )?)?
+                        buffer.write(&nbtx::to_le_bytes(&blk.into_transition(state))?)?
                     };
                 }
             }
-            Ok(buffer.into())
+            Ok(buffer.into_inner())
         }
     }
 
