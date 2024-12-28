@@ -3,8 +3,8 @@ use bedrockrs_macros::gamepacket;
 use bedrockrs_proto_core::error::ProtoCodecError;
 use bedrockrs_proto_core::ProtoCodec;
 use byteorder::{ReadBytesExt, WriteBytesExt};
-use std::mem::size_of;
 use std::io::{Cursor, Read};
+use std::mem::size_of;
 
 #[gamepacket(id = 97)]
 #[derive(Clone, Debug)]

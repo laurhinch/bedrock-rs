@@ -11,5 +11,5 @@ pub struct FeaturesDataListEntry {
 pub struct FeatureRegistryPacket {
     #[vec_repr(u32)]
     #[vec_endianness(var)]
-    pub features_data_list: Vec<FeaturesDataListEntry>
+    pub features_data_list: Vec<FeaturesDataListEntry>,
 }

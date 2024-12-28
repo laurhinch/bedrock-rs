@@ -1,6 +1,6 @@
 # bedrock-rs
 
-_Universal toolkit for MCBE in Rust_
+_Universal toolkit for Minecraft Bedrock Edition in Rust_
 
 An easy-to-use universal library for Minecraft Bedrock written in Rust, that aims to provide:
 
@@ -8,35 +8,45 @@ An easy-to-use universal library for Minecraft Bedrock written in Rust, that aim
 - [X] Common implementations
 - [X] An easy-to-use api
 
-We also have a community discord, feel free to join it to learn more about our future and get help when needed: https://discord.com/invite/VCVcrvt3JC
+We also have a community discord, feel free to join it to learn more about our future and get help when
+needed: https://discord.com/invite/VCVcrvt3JC
 
 ## Crates:
 
-- [Core](https://github.com/Adrian8115/bedrock-rs/tree/main/crates/core):
-  - Provides common base datatypes.
+We have split up bedrock-rs into multiple crates to better manage its size, all crates are accessible via the normal
+bedrock-rs crate.
+We also provide a ton of different features which you can enable
 
-- [Shared](https://github.com/Adrian8115/bedrock-rs/tree/main/crates/shared):
-  - Shared datatypes that can use derive macros defined in other crates.
+- [Shared](https://github.com/bedrock-crustaceans/bedrockrs/tree/main/crates/shared):
+    - [X] Common datatypes that can use derive macros defined in other crates and are used between the crates.
 
-- [Proto](https://github.com/Adrian8115/bedrock-rs/tree/main/crates/proto):
-  - Full implementation of the Bedrock protocol.
-  - Support for both Server and Client side intended.
-  - Built-in login procedure.
+- [Proto](https://github.com/bedrock-crustaceans/bedrockrs/tree/main/crates/proto):
+    - [X] Full implementation of the Bedrock protocol.
+    - [X] Support for both Server and Client side intended.
+    - [X] Multi protocol support
 
-- [World](https://github.com/Adrian8115/bedrock-rs/tree/main/crates/world):
-  - Implementation of the Bedrock level format using our own `leveldb` bindings for mojangs leveldb fork.
+- [World](https://github.com/bedrock-crustaceans/bedrockrs/tree/main/crates/world):
+    - [X] Level data structures.
+    - [X] Implementation of the Bedrock level format using rusty leveldb.
 
-- [Addons](https://github.com/Adrian8115/bedrock-rs/tree/main/crates/addon):
-  - Datatypes defining the structure of Addons.
-  - Serialization and Deserialization of addons.
+- [Server](https://github.com/bedrock-crustaceans/bedrockrs/tree/main/crates/server):
+    - [X] Extremly light weight server software foundation.
+    - [X] Built-in multi protocol support.
+    - [X] Asynchronously build via Tokio
 
-- [Form](https://github.com/Adrian8115/bedrock-rs/tree/main/crates/form):
-  - Implementation of the JSON form format used in Minecraft Bedrock.
+- [Addon](https://github.com/bedrock-crustaceans/bedrockrs/tree/main/crates/addon):
+    - [X] Datatypes defining the structure of Addons.
+    - [X] Serialization and Deserialization of addons.
+    - [X] Easy way to create addons programmatically.
+
+- [Form](https://github.com/bedrock-crustaceans/bedrockrs/tree/main/crates/form):
+    - [X] Implementation of the JSON form format used in Minecraft Bedrock.
 
 ## Contributing:
 
 Feel free to join in at any time. Your contributions are highly valued, and a big thank you to all who participate. We
-recommend getting acquainted with the bedrock-rs codebase. Whether it's tackling existing issues, adding new features,
-or even introducing entirely fresh modules, your creativity is welcome.
+recommend you familiarize yourself with the bedrock-rs codebase. Whether it's tackling existing issues, adding new
+features,
+or even introducing entirely fresh modules, your creativity is always welcome!
 
-(If you like this library, remember to give bedrockrs a Star!)
+And If you like bedrock-rs, remember to give it a Star

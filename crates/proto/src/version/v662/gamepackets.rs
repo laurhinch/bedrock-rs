@@ -259,7 +259,7 @@ gamepackets! {
     SetHud: SetHudPacket
 }
 
-fn read_gamepacket_header(
+pub fn read_gamepacket_header(
     stream: &mut Cursor<&[u8]>,
 ) -> Result<(u32, u16, SubClientID, SubClientID), ProtoCodecError> {
     // Read the gamepacket length
@@ -292,7 +292,7 @@ fn read_gamepacket_header(
     ))
 }
 
-fn write_gamepacket_header(
+pub fn write_gamepacket_header(
     stream: &mut Vec<u8>,
     length: u32,
     gamepacket_id: u16,
@@ -331,7 +331,7 @@ fn write_gamepacket_header(
     Ok(())
 }
 
-const fn get_gamepacket_header_size_prediction() -> usize {
+pub const fn get_gamepacket_header_size_prediction() -> usize {
     // 2 = gamepacket header (varint u32, only 14 bites can be treated as an u16)
     // 4 = gamepacket length size (varint u32)
     2 + 4

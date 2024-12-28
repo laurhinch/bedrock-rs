@@ -1,7 +1,7 @@
 use crate::version::v662::types::{NetworkItemInstanceDescriptor, RecipeIngredient};
+use crate::version::v766::types::RecipeUnlockingRequirement;
 use bedrockrs_macros::ProtoCodec;
 use uuid::Uuid;
-use crate::version::v766::types::RecipeUnlockingRequirement;
 
 #[derive(ProtoCodec, Clone, Debug)]
 pub struct UserDataShapelessRecipe {

@@ -14,5 +14,5 @@ pub struct MaterialReducerDataEntry {
     pub input: i32,
     #[vec_repr(u32)]
     #[vec_endianness(var)]
-    pub ids_and_counts: Vec<MaterialReducerDataEntryIdAndCount>
+    pub ids_and_counts: Vec<MaterialReducerDataEntryIdAndCount>,
 }

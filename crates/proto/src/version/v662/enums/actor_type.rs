@@ -5,7 +5,7 @@ mod flags {
     pub const TYPE_MASK: i32 = 0x000000ff;
     pub const MOB: i32 = 0x00000100;
     pub const PATHFINDER_MOB: i32 = 0x00000200 | MOB;
-    pub const MONSTER: i32 = 0x00000800 |  PATHFINDER_MOB;
+    pub const MONSTER: i32 = 0x00000800 | PATHFINDER_MOB;
     pub const ANIMAL: i32 = 0x00001000 | PATHFINDER_MOB;
     pub const TAMABLE_ANIMAL: i32 = 0x00004000 | ANIMAL;
     pub const AMBIENT: i32 = 0x00008000 | MOB;
@@ -142,7 +142,7 @@ mod flags {
     pub const FROG: i32 = 132 | ANIMAL;
     pub const TADPOLE: i32 = 133 | WATERANIMAL;
     pub const ALLAY: i32 = 134 | MOB;
-    pub const CHESTBOATRIDEABLE: i32 = 136 |  BOATRIDEABLE;
+    pub const CHESTBOATRIDEABLE: i32 = 136 | BOATRIDEABLE;
     pub const TRADERLLAMA: i32 = 137 | LLAMA;
     pub const CAMEL: i32 = 138 | ANIMAL;
     pub const SNIFFER: i32 = 139 | ANIMAL;

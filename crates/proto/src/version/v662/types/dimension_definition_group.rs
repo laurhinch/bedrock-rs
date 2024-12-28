@@ -3,7 +3,7 @@ use bedrockrs_macros::ProtoCodec;
 #[derive(ProtoCodec, Clone, Debug)]
 pub struct DimensionDefinitionGroupType {
     pub name: String,
-    pub dimension_definition: DimensionDefinition
+    pub dimension_definition: DimensionDefinition,
 }
 
 #[derive(ProtoCodec, Clone, Debug)]
@@ -20,5 +20,5 @@ pub struct DimensionDefinition {
 pub struct DimensionDefinitionGroup {
     #[vec_repr(u32)]
     #[vec_endianness(var)]
-    pub definitions: Vec<DimensionDefinitionGroupType>
+    pub definitions: Vec<DimensionDefinitionGroupType>,
 }

@@ -22,13 +22,13 @@ impl ProtoCodec for BlocksChangedEntry {
         <u32 as ProtoCodecVAR>::proto_serialize(&self.runtime_id, stream)?;
         <u32 as ProtoCodecVAR>::proto_serialize(&self.update_flags, stream)?;
         <u64 as ProtoCodecVAR>::proto_serialize(&self.sync_message_entity_unique_id, stream)?;
-        
+
         let mut sync_message_stream: Vec<u8> = Vec::new();
         self.sync_message.proto_serialize(&mut sync_message_stream)?;
         let mut sync_message_cursor = Cursor::new(sync_message_stream.as_slice());
-        
+
         stream.write_u32_varint(sync_message_cursor.read_i64_varint()? as u32)?;
-        
+
         Ok(())
     }
 
@@ -37,13 +37,13 @@ impl ProtoCodec for BlocksChangedEntry {
         let runtime_id = <u32 as ProtoCodecVAR>::proto_deserialize(stream)?;
         let update_flags = <u32 as ProtoCodecVAR>::proto_deserialize(stream)?;
         let sync_message_entity_unique_id = <u64 as ProtoCodecVAR>::proto_deserialize(stream)?;
-        
+
         let mut sync_message_stream: Vec<u8> = Vec::new();
         sync_message_stream.write_i64_varint(stream.read_u32_varint()? as i64)?;
         let mut sync_message_cursor = Cursor::new(sync_message_stream.as_slice());
-        
+
         let sync_message = ActorBlockSyncMessageID::proto_deserialize(&mut sync_message_cursor)?;
-        
+
         Ok(Self {
             pos,
             runtime_id,
@@ -55,10 +55,10 @@ impl ProtoCodec for BlocksChangedEntry {
 
     fn get_size_prediction(&self) -> usize {
         self.pos.get_size_prediction()
-        + self.runtime_id.get_size_prediction()
-        + self.update_flags.get_size_prediction()
-        + self.sync_message_entity_unique_id.get_size_prediction()
-        + size_of::<u32>()
+            + self.runtime_id.get_size_prediction()
+            + self.update_flags.get_size_prediction()
+            + self.sync_message_entity_unique_id.get_size_prediction()
+            + size_of::<u32>()
     }
 }
 

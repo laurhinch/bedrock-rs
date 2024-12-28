@@ -6,5 +6,5 @@ use bedrockrs_macros::{gamepacket, ProtoCodec};
 #[derive(ProtoCodec, Clone, Debug)]
 pub struct BossEventPacket {
     pub target_actor_id: ActorUniqueID,
-    pub event_type: BossEventUpdateType
+    pub event_type: BossEventUpdateType,
 }

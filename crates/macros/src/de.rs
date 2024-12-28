@@ -131,7 +131,7 @@ pub fn build_de_struct(data_struct: &DataStruct) -> TokenStream {
     }
 }
 
-pub fn build_de_enum(data_enum: &DataEnum, attrs: &[Attribute]) -> TokenStream {
+pub fn build_de_enum(data_enum: &DataEnum, attrs: &[Attribute], name: Ident) -> TokenStream {
     let flags = get_attrs(attrs).expect("Error while getting attrs");
 
     if let (Some(repr), endian) = (flags.enum_repr, flags.enum_endianness) {
@@ -172,7 +172,7 @@ pub fn build_de_enum(data_enum: &DataEnum, attrs: &[Attribute]) -> TokenStream {
 
             let val = match enum_type {
                 #(#variants),*
-                _ => { todo!() }
+                _ => { return Err(bedrockrs_proto_core::error::ProtoCodecError::InvalidEnumID(format!("{enum_type:?}"), stringify!(#name))) },
             };
         }
     } else {

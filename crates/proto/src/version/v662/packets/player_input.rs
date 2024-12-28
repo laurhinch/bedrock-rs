@@ -1,5 +1,5 @@
-use vek::Vec2;
 use bedrockrs_macros::{gamepacket, ProtoCodec};
+use vek::Vec2;
 
 #[gamepacket(id = 57)]
 #[derive(ProtoCodec, Clone, Debug)]

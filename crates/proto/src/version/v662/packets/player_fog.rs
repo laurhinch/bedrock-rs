@@ -5,5 +5,5 @@ use bedrockrs_macros::{gamepacket, ProtoCodec};
 pub struct PlayerFogPacket {
     #[vec_repr(u32)]
     #[vec_endianness(var)]
-    pub fog_stack: Vec<String>
+    pub fog_stack: Vec<String>,
 }

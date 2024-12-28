@@ -1,9 +1,9 @@
 use crate::version::v662::enums::{BuildPlatform, GameType};
 use crate::version::v662::types::{ActorRuntimeID, DataItem, NetworkItemStackDescriptor, PropertySyncData, SerializedAbilitiesData};
-use vek::{Vec2, Vec3};
+use crate::version::v766::types::ActorLink;
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 use uuid::Uuid;
-use crate::version::v766::types::ActorLink;
+use vek::{Vec2, Vec3};
 
 #[gamepacket(id = 12)]
 #[derive(ProtoCodec, Clone, Debug)]

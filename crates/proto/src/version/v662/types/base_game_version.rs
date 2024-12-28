@@ -14,7 +14,7 @@ impl ProtoCodec for BaseGameVersion {
     fn proto_deserialize(stream: &mut Cursor<&[u8]>) -> Result<Self, ProtoCodecError> {
         Ok(Self(String::proto_deserialize(stream)?))
     }
-    
+
     fn get_size_prediction(&self) -> usize {
         self.0.get_size_prediction()
     }

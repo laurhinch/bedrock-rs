@@ -6,11 +6,11 @@ use crate::version::v662::types::{
     ActorUniqueID, ItemStackRequestSlotInfo, PackedItemUseLegacyInventoryTransaction,
     PlayerBlockActions,
 };
-use vek::{Vec2, Vec3};
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 use bedrockrs_proto_core::error::ProtoCodecError;
 use bedrockrs_proto_core::{ProtoCodec, ProtoCodecLE, ProtoCodecVAR};
 use std::io::Cursor;
+use vek::{Vec2, Vec3};
 
 #[repr(u64)]
 pub enum PlayerAuthInputFlags {
@@ -243,29 +243,29 @@ impl ProtoCodec for PlayerAuthInputPacket {
             + self.play_mode.get_size_prediction()
             + self.new_interaction_model.get_size_prediction()
             + match self.play_mode {
-                ClientPlayMode::Reality => ProtoCodecLE::get_size_prediction(&self.vr_gaze_direction),
-                _ => 0,
-            }
+            ClientPlayMode::Reality => ProtoCodecLE::get_size_prediction(&self.vr_gaze_direction),
+            _ => 0,
+        }
             + ProtoCodecVAR::get_size_prediction(&self.client_tick)
             + ProtoCodecLE::get_size_prediction(&self.velocity)
             + match &self.input_data & PlayerAuthInputFlags::PerformItemInteraction as u64 != 0 {
-                true => self.item_use_transaction.get_size_prediction(),
-                false => 0,
-            }
+            true => self.item_use_transaction.get_size_prediction(),
+            false => 0,
+        }
             + match &self.input_data & PlayerAuthInputFlags::PerformItemStackRequest as u64 != 0 {
-                true => self.item_stack_request.get_size_prediction(),
-                false => 0,
-            }
+            true => self.item_stack_request.get_size_prediction(),
+            false => 0,
+        }
             + match &self.input_data & PlayerAuthInputFlags::PerformBlockActions as u64 != 0 {
-                true => self.player_block_actions.get_size_prediction(),
-                false => 0,
-            }
+            true => self.player_block_actions.get_size_prediction(),
+            false => 0,
+        }
             + match &self.input_data & PlayerAuthInputFlags::IsInClientPredictedVehicle as u64
-                != 0
-            {
-                true => self.client_predicted_vehicle.get_size_prediction(),
-                false => 0,
-            }
+            != 0
+        {
+            true => self.client_predicted_vehicle.get_size_prediction(),
+            false => 0,
+        }
             + ProtoCodecLE::get_size_prediction(&self.analog_move_vector)
     }
 }

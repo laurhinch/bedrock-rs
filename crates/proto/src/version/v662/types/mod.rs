@@ -32,7 +32,6 @@ export!(inventory_transaction);
 export!(item_data);
 export!(item_enchants);
 export!(item_instance_user_data);
-export!(item_stack_net_id_variant);
 export!(item_stack_request_slot_info);
 export!(item_stack_response_container_info);
 export!(item_stack_response_info);

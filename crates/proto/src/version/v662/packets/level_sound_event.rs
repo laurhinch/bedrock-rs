@@ -1,6 +1,6 @@
-use vek::Vec3;
 use crate::version::v662::enums::LevelSoundEventType;
 use bedrockrs_macros::{gamepacket, ProtoCodec};
+use vek::Vec3;
 
 #[gamepacket(id = 123)]
 #[derive(ProtoCodec, Clone, Debug)]

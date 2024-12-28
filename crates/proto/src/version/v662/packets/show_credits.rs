@@ -14,5 +14,5 @@ pub enum CreditsState {
 #[derive(ProtoCodec, Clone, Debug)]
 pub struct ShowCreditsPacket {
     pub player_runtime_id: ActorRuntimeID,
-    pub credits_state: CreditsState
+    pub credits_state: CreditsState,
 }
