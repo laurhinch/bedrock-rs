@@ -3,7 +3,7 @@ use bedrockrs_macros::{gamepacket, ProtoCodec};
 
 #[derive(ProtoCodec, Clone, Debug)]
 #[enum_repr(u32)]
-#[enum_endianness(var)]
+#[enum_endianness(le)]
 #[repr(u32)]
 pub enum Type {
     Invalid = 0,
@@ -27,6 +27,6 @@ pub enum Type {
 
 #[gamepacket(id = 163)]
 #[derive(ProtoCodec, Clone, Debug)]
-pub struct ClientboundDebugRendererPacket {
+pub struct ClientBoundDebugRendererPacket {
     pub debug_marker_type: Type,
 }
