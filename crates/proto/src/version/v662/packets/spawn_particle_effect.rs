@@ -1,6 +1,6 @@
 use crate::version::v662::types::{ActorUniqueID, MolangVariableMap};
-use vek::Vec3;
 use bedrockrs_macros::{gamepacket, ProtoCodec};
+use vek::Vec3;
 
 #[gamepacket(id = 118)]
 #[derive(ProtoCodec, Clone, Debug)]
@@ -10,5 +10,5 @@ pub struct SpawnParticleEffectPacket {
     #[endianness(le)]
     pub position: Vec3<f32>,
     pub effect_name: String,
-    pub molang_variables: Option<MolangVariableMap>
+    pub molang_variables: Option<MolangVariableMap>,
 }

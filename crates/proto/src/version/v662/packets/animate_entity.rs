@@ -14,5 +14,5 @@ pub struct AnimateEntityPacket {
     pub blend_out_time: f32,
     #[vec_repr(u32)]
     #[vec_endianness(var)]
-    pub runtime_ids: Vec<ActorRuntimeID>
+    pub runtime_ids: Vec<ActorRuntimeID>,
 }

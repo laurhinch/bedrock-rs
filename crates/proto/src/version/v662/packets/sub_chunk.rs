@@ -145,35 +145,35 @@ impl ProtoCodec for SubChunkPacket {
             + self.center_pos.get_size_prediction()
             + size_of::<u32>()
             + self
-                .sub_chunk_data
-                .iter()
-                .map(|i| {
-                    i.sub_chunk_pos_offset.get_size_prediction()
-                        + i.sub_chunk_request_result.get_size_prediction()
-                        + match i.sub_chunk_request_result == SubChunkRequestResult::SuccessAllAir
-                            || self.cache_enabled
-                        {
-                            true => i
-                                .serialized_sub_chunk
-                                .as_ref()
-                                .unwrap()
-                                .get_size_prediction(),
-                            false => 0,
-                        }
-                        + i.height_map_data_type.get_size_prediction()
-                        + match i.height_map_data_type == HeightMapDataType::HasData {
-                            true => {
-                                let height_map = i.sub_chunk_height_map.as_ref().unwrap();
-                                height_map.len() * height_map[0].len() * size_of::<i8>()
-                            }
-                            false => 0,
-                        }
-                        + match self.cache_enabled {
-                            true => size_of::<u64>(),
-                            false => 0,
-                        }
-                })
-                .sum::<usize>()
+            .sub_chunk_data
+            .iter()
+            .map(|i| {
+                i.sub_chunk_pos_offset.get_size_prediction()
+                    + i.sub_chunk_request_result.get_size_prediction()
+                    + match i.sub_chunk_request_result == SubChunkRequestResult::SuccessAllAir
+                    || self.cache_enabled
+                {
+                    true => i
+                        .serialized_sub_chunk
+                        .as_ref()
+                        .unwrap()
+                        .get_size_prediction(),
+                    false => 0,
+                }
+                    + i.height_map_data_type.get_size_prediction()
+                    + match i.height_map_data_type == HeightMapDataType::HasData {
+                    true => {
+                        let height_map = i.sub_chunk_height_map.as_ref().unwrap();
+                        height_map.len() * height_map[0].len() * size_of::<i8>()
+                    }
+                    false => 0,
+                }
+                    + match self.cache_enabled {
+                    true => size_of::<u64>(),
+                    false => 0,
+                }
+            })
+            .sum::<usize>()
     }
 }
 

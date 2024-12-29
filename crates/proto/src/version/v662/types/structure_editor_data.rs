@@ -10,5 +10,5 @@ pub struct StructureEditorData {
     pub show_bounding_box: bool,
     pub structure_block_type: StructureBlockType,
     pub structure_settings: StructureSettings,
-    pub redstone_save_mode: StructureRedstoneSaveMode
+    pub redstone_save_mode: StructureRedstoneSaveMode,
 }

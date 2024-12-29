@@ -1,5 +1,5 @@
-use vek::Vec2;
 use bedrockrs_macros::{gamepacket, ProtoCodec};
+use vek::Vec2;
 
 #[derive(ProtoCodec, Clone, Debug)]
 #[enum_repr(i8)]
@@ -26,5 +26,5 @@ pub struct CameraAimAssistPacket {
     #[endianness(le)]
     pub distance: f32,
     pub target_mode: TargetMode,
-    pub action: Action
+    pub action: Action,
 }

@@ -8,5 +8,5 @@ pub struct HurtArmorPacket {
     #[endianness(var)]
     pub damage: i32,
     #[endianness(var)]
-    pub armor_slots: u64
+    pub armor_slots: u64,
 }

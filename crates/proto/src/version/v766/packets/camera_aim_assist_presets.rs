@@ -5,13 +5,13 @@ pub struct CategoriesDefinition {
     pub identifier: String,
     #[vec_repr(u32)]
     #[vec_endianness(var)]
-    pub categories: Vec<CategoryDefinition>
+    pub categories: Vec<CategoryDefinition>,
 }
 
 #[derive(ProtoCodec, Clone, Debug)]
 pub struct CategoryDefinition {
     pub name: String,
-    pub priorities: CategoryPriorities
+    pub priorities: CategoryPriorities,
 }
 
 #[derive(ProtoCodec, Clone, Debug)]

@@ -13,5 +13,5 @@ pub struct ItemEnchants {
     pub slot: i32,
     #[vec_repr(u32)]
     #[vec_endianness(var)]
-    pub enchants_for_given_activation: Vec<ItemEnchant>
+    pub enchants_for_given_activation: Vec<ItemEnchant>,
 }

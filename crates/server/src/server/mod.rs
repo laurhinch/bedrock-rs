@@ -1,5 +1,4 @@
 use crate::error::LoginError;
-use crate::login::login;
 use bedrockrs_proto::listener::Listener;
 use shipyard::World;
 use std::error::Error;

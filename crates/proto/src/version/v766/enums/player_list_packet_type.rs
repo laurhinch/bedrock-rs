@@ -1,11 +1,11 @@
-use std::io::Cursor;
-use std::mem::size_of;
 use crate::version::v662::enums::BuildPlatform;
 use crate::version::v662::types::{ActorUniqueID, SerializedSkin};
 use bedrockrs_macros::ProtoCodec;
-use uuid::Uuid;
 use bedrockrs_proto_core::error::ProtoCodecError;
 use bedrockrs_proto_core::{ProtoCodec, ProtoCodecVAR};
+use std::io::Cursor;
+use std::mem::size_of;
+use uuid::Uuid;
 
 #[derive(ProtoCodec, Clone, Debug)]
 pub struct AddPlayerListEntry {
@@ -40,7 +40,7 @@ impl ProtoCodec for PlayerListPacketType {
                 i8::proto_serialize(&0, stream)?;
                 let len: u32 = add_player_list.len().try_into()?;
                 <u32 as ProtoCodecVAR>::proto_serialize(&len, stream)?;
-                
+
                 for i in add_player_list {
                     i.uuid.proto_serialize(stream)?;
                     i.target_actor_id.proto_serialize(stream)?;
@@ -53,24 +53,24 @@ impl ProtoCodec for PlayerListPacketType {
                     i.is_host.proto_serialize(stream)?;
                     i.is_sub_client.proto_serialize(stream)?;
                 }
-                
+
                 for i in add_player_list {
                     i.is_trusted_skin.proto_serialize(stream)?;
                 }
-                
+
                 Ok(())
-            },
+            }
             PlayerListPacketType::Remove { remove_player_list } => {
                 i8::proto_serialize(&1, stream)?;
                 let len = remove_player_list.len().try_into()?;
                 <u32 as ProtoCodecVAR>::proto_serialize(&len, stream)?;
-                
+
                 for i in remove_player_list {
                     i.proto_serialize(stream)?
                 }
-                
+
                 Ok(())
-            },
+            }
         }
     }
 
@@ -95,37 +95,37 @@ impl ProtoCodec for PlayerListPacketType {
                         is_trusted_skin: false,
                     })
                 }
-                
+
                 for i in &mut add_player_list {
                     i.is_trusted_skin = bool::proto_deserialize(stream)?
                 }
-                
+
                 PlayerListPacketType::Add { add_player_list }
-            },
+            }
             1 => {
                 let mut remove_player_list = Vec::with_capacity(len.try_into()?);
                 for _ in 0..len {
                     remove_player_list.push(Uuid::proto_deserialize(stream)?);
                 }
-                
+
                 PlayerListPacketType::Remove { remove_player_list }
-            },
-            _ => {panic!("Unknown discriminant {}", discriminant)},
+            }
+            _ => { panic!("Unknown discriminant {}", discriminant) }
         };
-        
+
         Ok(value)
     }
 
     fn get_size_prediction(&self) -> usize {
         match self {
-            PlayerListPacketType::Add { add_player_list } => { 
+            PlayerListPacketType::Add { add_player_list } => {
                 size_of::<u32>()
-                + add_player_list.iter().map(|i| i.get_size_prediction()).sum::<usize>()
-            },
-            PlayerListPacketType::Remove { remove_player_list } => { 
+                    + add_player_list.iter().map(|i| i.get_size_prediction()).sum::<usize>()
+            }
+            PlayerListPacketType::Remove { remove_player_list } => {
                 size_of::<u32>()
-                + remove_player_list.iter().map(|i| i.get_size_prediction()).sum::<usize>()
-            },
+                    + remove_player_list.iter().map(|i| i.get_size_prediction()).sum::<usize>()
+            }
         }
     }
 }

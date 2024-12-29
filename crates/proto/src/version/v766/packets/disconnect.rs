@@ -21,11 +21,11 @@ impl ProtoCodec for DisconnectPacket {
     fn proto_serialize(&self, stream: &mut Vec<u8>) -> Result<(), ProtoCodecError> {
         self.reason.proto_serialize(stream)?;
         bool::proto_serialize(&self.messages.is_none(), stream)?;
-        
+
         if let Some(ref message) = self.messages {
             message.proto_serialize(stream)?;
         }
-        
+
         Ok(())
     }
 
@@ -36,7 +36,7 @@ impl ProtoCodec for DisconnectPacket {
             true => Some(DisconnectPacketMessage::proto_deserialize(stream)?),
             false => None,
         };
-        
+
         Ok(DisconnectPacket { reason, messages })
     }
 
