@@ -3,14 +3,14 @@ use crate::version::v662::enums::{
     TextProcessingEventOrigin,
 };
 use crate::version::v662::types::{
-    ActorUniqueID, ItemStackRequestSlotInfo, PackedItemUseLegacyInventoryTransaction,
-    PlayerBlockActions,
+    ActorUniqueID,
 };
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 use bedrockrs_proto_core::error::ProtoCodecError;
 use bedrockrs_proto_core::{ProtoCodec, ProtoCodecLE, ProtoCodecVAR};
 use std::io::Cursor;
 use vek::{Vec2, Vec3};
+use crate::version::v766::types::{ItemStackRequestSlotInfo, PackedItemUseLegacyInventoryTransaction, PlayerBlockActions};
 
 pub struct PlayerAuthInputFlags;
 

@@ -1,7 +1,7 @@
-use crate::version::v662::types::{ActorRuntimeID, ActorUniqueID, DataItem, PropertySyncData};
-use crate::version::v766::types::ActorLink;
-use bedrockrs_macros::{gamepacket, ProtoCodec};
+use crate::version::v662::types::{ActorRuntimeID, ActorUniqueID, PropertySyncData};
 use vek::{Vec2, Vec3};
+use bedrockrs_macros::{gamepacket, ProtoCodec};
+use crate::version::v766::types::{ActorLink, DataItem};
 
 #[derive(ProtoCodec, Clone, Debug)]
 pub struct AttributeEntry {
@@ -39,5 +39,5 @@ pub struct AddActorPacket {
     pub synced_properties: PropertySyncData,
     #[vec_repr(u32)]
     #[vec_endianness(var)]
-    pub actor_links: Vec<ActorLink>,
+    pub actor_links: Vec<ActorLink>
 }

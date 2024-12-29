@@ -47,7 +47,7 @@ pub enum Type {
 
 #[gamepacket(id = 67)]
 #[derive(Clone, Debug)]
-pub struct ClientboundMapItemDataPacket {
+pub struct ClientBoundMapItemDataPacket {
     pub map_id: ActorUniqueID,
     pub type_flags: Type,
     pub dimension: i8,
@@ -55,7 +55,7 @@ pub struct ClientboundMapItemDataPacket {
     pub map_origin: BlockPos,
 }
 
-impl ProtoCodec for ClientboundMapItemDataPacket {
+impl ProtoCodec for ClientBoundMapItemDataPacket {
     fn proto_serialize(&self, stream: &mut Vec<u8>) -> Result<(), ProtoCodecError> {
         let mut type_flags_stream: Vec<u8> = Vec::new();
         <Type as ProtoCodec>::proto_serialize(&self.type_flags, &mut type_flags_stream)?;

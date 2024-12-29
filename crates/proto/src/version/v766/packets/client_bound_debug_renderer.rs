@@ -27,6 +27,6 @@ pub enum Type {
 
 #[gamepacket(id = 163)]
 #[derive(ProtoCodec, Clone, Debug)]
-pub struct ClientboundDebugRendererPacket {
+pub struct ClientBoundDebugRendererPacket {
     pub debug_marker_type: Type,
 }

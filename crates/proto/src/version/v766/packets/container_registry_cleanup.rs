@@ -1,6 +1,7 @@
 use crate::version::v766::types::FullContainerName;
-use bedrockrs_macros::ProtoCodec;
+use bedrockrs_macros::{gamepacket, ProtoCodec};
 
+#[gamepacket(id = 317)]
 #[derive(ProtoCodec, Clone, Debug)]
 pub struct ContainerRegistryCleanupPacket {
     #[vec_repr(u32)]

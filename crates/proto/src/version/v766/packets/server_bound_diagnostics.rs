@@ -1,5 +1,6 @@
-use bedrockrs_macros::ProtoCodec;
+use bedrockrs_macros::{gamepacket, ProtoCodec};
 
+#[gamepacket(id = 315)]
 #[derive(ProtoCodec, Clone, Debug)]
 pub struct ServerBoundDiagnosticsPacket {
     #[endianness(le)]
