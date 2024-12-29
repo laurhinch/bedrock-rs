@@ -1,4 +1,4 @@
-use bedrockrs_macros::ProtoCodec;
+use bedrockrs_macros::{gamepacket, ProtoCodec};
 
 #[derive(ProtoCodec, Clone, Debug)]
 #[enum_repr(i32)]
@@ -10,6 +10,7 @@ pub enum LoadingScreenType {
     EndLoadingScreen = 2,
 }
 
+#[gamepacket(id = 312)]
 #[derive(ProtoCodec, Clone, Debug)]
 pub struct ServerBoundLoadingScreenPacket {
     pub loading_screen_type: LoadingScreenType,
