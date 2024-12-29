@@ -25,3 +25,5 @@ export!(player_input_tick);
 export!(shaped_chemistry_recipe);
 export!(shaped_recipe);
 export!(shapeless_recipe);
+export!(item_stack_response_info);
+export!(player_block_actions);

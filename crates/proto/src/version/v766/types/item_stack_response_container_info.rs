@@ -1,4 +1,4 @@
-use crate::version::v662::types::ItemStackResponseSlotInfo;
+use crate::version::v766::types::ItemStackResponseSlotInfo;
 use bedrockrs_macros::ProtoCodec;
 use crate::v766::types::FullContainerName;
 

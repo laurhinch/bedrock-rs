@@ -13,3 +13,4 @@ export!(data_item_type);
 export!(player_action_type);
 export!(player_list_packet_type);
 export!(soft_enum_update_type);
+export!(item_stack_net_result);
