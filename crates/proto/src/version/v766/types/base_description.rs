@@ -4,14 +4,14 @@ use bedrockrs_macros::ProtoCodec;
 pub struct DeferredDescriptor {
     pub full_name: String,
     #[endianness(le)]
-    pub aux_value: u16
+    pub aux_value: u16,
 }
 
 #[derive(ProtoCodec, Clone, Debug)]
 pub struct InternalItemDescriptor {
     pub full_name: String,
     #[endianness(le)]
-    pub aux_value: u16
+    pub aux_value: u16,
 }
 
 #[derive(ProtoCodec, Clone, Debug)]
@@ -21,7 +21,7 @@ pub struct MolangDescriptor {
 
 #[derive(ProtoCodec, Clone, Debug)]
 pub struct ItemTagDescriptor {
-    pub item_tag: String
+    pub item_tag: String,
 }
 
 #[derive(ProtoCodec, Clone, Debug)]

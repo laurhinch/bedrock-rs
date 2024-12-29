@@ -15,13 +15,13 @@ pub enum Type {
 pub struct GameRuleChanged {
     pub rule_name: String,
     pub can_be_modified_by_player: bool,
-    pub rule_type: Type
+    pub rule_type: Type,
 }
 
 #[derive(ProtoCodec, Clone, Debug)]
 pub struct GameRulesChangedPacketData {
     #[vec_repr(u32)]
     #[vec_endianness(var)]
-    pub rules_list: Vec<GameRuleChanged>
+    pub rules_list: Vec<GameRuleChanged>,
 }
 

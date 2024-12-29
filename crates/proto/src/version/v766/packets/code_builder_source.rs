@@ -1,6 +1,6 @@
 use crate::version::v662::enums::{CodeBuilderStorageCategory, CodeBuilderStorageOperation};
-use bedrockrs_macros::{gamepacket, ProtoCodec};
 use crate::version::v766::enums::CodeBuilderExecutionState;
+use bedrockrs_macros::{gamepacket, ProtoCodec};
 
 #[gamepacket(id = 178)]
 #[derive(ProtoCodec, Clone, Debug)]

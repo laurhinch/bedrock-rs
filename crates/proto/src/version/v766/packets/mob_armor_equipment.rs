@@ -9,5 +9,5 @@ pub struct MobArmorEquipmentPacket {
     pub torso: NetworkItemStackDescriptor,
     pub legs: NetworkItemStackDescriptor,
     pub feet: NetworkItemStackDescriptor,
-    pub body: NetworkItemStackDescriptor
+    pub body: NetworkItemStackDescriptor,
 }

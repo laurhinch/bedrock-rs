@@ -54,11 +54,11 @@ pub enum CraftingDataEntryType {
     SmithingTransformRecipe {
         smithing_transform_recipe: SmithingTransformRecipe,
         #[endianness(var)]
-        net_id: i32
+        net_id: i32,
     } = 8,
     SmithingTrimRecipe {
         smithing_trim_recipe: SmithingTrimRecipe,
         #[endianness(var)]
-        net_id: i32
+        net_id: i32,
     } = 9,
 }

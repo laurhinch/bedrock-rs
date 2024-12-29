@@ -1,5 +1,4 @@
 use bedrockrs_proto::error::ConnectionError;
-use std::error::Error;
 use thiserror::Error;
 
 pub enum StartError {}

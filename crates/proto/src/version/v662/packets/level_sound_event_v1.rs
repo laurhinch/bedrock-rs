@@ -1,5 +1,4 @@
 use crate::version::v662::enums::{ActorType, LevelSoundEventType};
-use vek::Vec3;
 use bedrockrs_macros::gamepacket;
 use bedrockrs_proto_core::error::ProtoCodecError;
 use bedrockrs_proto_core::{ProtoCodec, ProtoCodecLE, ProtoCodecVAR};
@@ -7,6 +6,7 @@ use byteorder::{ReadBytesExt, WriteBytesExt};
 use std::io::Cursor;
 use std::mem::size_of;
 use varint_rs::{VarintReader, VarintWriter};
+use vek::Vec3;
 
 #[gamepacket(id = 24)]
 #[derive(Clone, Debug)]

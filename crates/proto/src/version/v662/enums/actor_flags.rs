@@ -68,7 +68,7 @@ pub enum ActorFlags {
     Sneezing = 65,
     Trusting = 66,
     Rolling = 67,
-    Scared  = 68,
+    Scared = 68,
     InScaffolding = 69,
     OverScaffolding = 70,
     DescendThroughBlock = 71,

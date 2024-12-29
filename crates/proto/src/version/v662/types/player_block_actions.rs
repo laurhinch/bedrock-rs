@@ -5,5 +5,5 @@ use bedrockrs_macros::ProtoCodec;
 pub struct PlayerBlockActions {
     #[vec_repr(i32)]
     #[vec_endianness(var)]
-    pub player_block_actions: Vec<PlayerBlockActionData>
+    pub player_block_actions: Vec<PlayerBlockActionData>,
 }

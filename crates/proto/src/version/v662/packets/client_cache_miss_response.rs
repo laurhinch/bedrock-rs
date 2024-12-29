@@ -12,5 +12,5 @@ pub struct MissingBlobEntry {
 pub struct ClientCacheMissResponsePacket {
     #[vec_repr(u32)]
     #[vec_endianness(var)]
-    pub missing_blobs: Vec<MissingBlobEntry>
+    pub missing_blobs: Vec<MissingBlobEntry>,
 }

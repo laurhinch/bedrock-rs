@@ -15,5 +15,5 @@ pub struct MapInfoRequestPacket {
     pub map_unique_id: ActorUniqueID,
     #[vec_repr(u32)]
     #[vec_endianness(le)]
-    pub client_pixels_list: Vec<ClientPixelsListEntry>
+    pub client_pixels_list: Vec<ClientPixelsListEntry>,
 }

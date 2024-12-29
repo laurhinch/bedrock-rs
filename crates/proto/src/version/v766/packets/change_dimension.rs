@@ -1,5 +1,5 @@
-use vek::Vec3;
 use bedrockrs_macros::{gamepacket, ProtoCodec};
+use vek::Vec3;
 
 #[gamepacket(id = 61)]
 #[derive(ProtoCodec, Clone, Debug)]
@@ -10,5 +10,5 @@ pub struct ChangeDimensionPacket {
     pub position: Vec3<f32>,
     pub respawn: bool,
     #[endianness(le)]
-    pub loading_screen_id: Option<u32>
+    pub loading_screen_id: Option<u32>,
 }

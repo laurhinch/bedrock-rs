@@ -11,5 +11,5 @@ pub struct NetworkChunkPublisherUpdatePacket {
     pub server_built_chunks_size: u32,
     #[vec_repr(u32)]
     #[vec_endianness(var)]
-    pub server_built_chunks_list: Vec<ChunkPos>
+    pub server_built_chunks_list: Vec<ChunkPos>,
 }

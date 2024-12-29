@@ -10,14 +10,14 @@ pub struct ActorUniqueID(pub u64);
 impl ProtoCodec for ActorUniqueID {
     fn proto_serialize(&self, stream: &mut Vec<u8>) -> Result<(), ProtoCodecError> {
         stream.write_u64_varint(self.0)?;
-        
+
         Ok(())
     }
 
     fn proto_deserialize(stream: &mut Cursor<&[u8]>) -> Result<Self, ProtoCodecError> {
         Ok(Self(stream.read_u64_varint()?))
     }
-    
+
     fn get_size_prediction(&self) -> usize {
         size_of::<u64>()
     }

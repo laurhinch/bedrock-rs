@@ -1,3 +1,4 @@
+use crate::v662::enums::ItemUseMethod;
 use crate::version::v662::enums::{ActorDamageCause, ActorType, InteractionType, POIBlockInteractionType};
 use crate::version::v662::types::ActorUniqueID;
 use bedrockrs_macros::{gamepacket, ProtoCodec};
@@ -5,7 +6,6 @@ use bedrockrs_proto_core::error::ProtoCodecError;
 use bedrockrs_proto_core::ProtoCodec;
 use std::io::{Cursor, Read};
 use varint_rs::{VarintReader, VarintWriter};
-use crate::v662::enums::ItemUseMethod;
 
 #[derive(ProtoCodec, Clone, Debug)]
 #[enum_repr(i32)]
@@ -212,8 +212,8 @@ impl ProtoCodec for LegacyTelemetryEventPacket {
 
     fn get_size_prediction(&self) -> usize {
         self.event_type.get_size_prediction()
-        + self.target_actor_id.get_size_prediction()
-        + self.use_player_id.get_size_prediction()
+            + self.target_actor_id.get_size_prediction()
+            + self.use_player_id.get_size_prediction()
     }
 }
 
