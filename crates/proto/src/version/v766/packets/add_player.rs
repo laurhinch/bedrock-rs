@@ -3,7 +3,8 @@ use crate::version::v662::types::{ActorRuntimeID, NetworkItemStackDescriptor, Pr
 use vek::{Vec2, Vec3};
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 use uuid::Uuid;
-use crate::version::v766::types::{ActorLink, DataItem};
+use crate::version::v748::types::ActorLink;
+use crate::version::v766::types::DataItem;
 
 #[gamepacket(id = 12)]
 #[derive(ProtoCodec, Clone, Debug)]

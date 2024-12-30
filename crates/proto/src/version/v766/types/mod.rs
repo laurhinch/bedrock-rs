@@ -5,7 +5,6 @@ macro_rules! export {
     };
 }
 
-export!(actor_link);
 export!(base_description);
 export!(camera_instruction);
 export!(camera_preset);
