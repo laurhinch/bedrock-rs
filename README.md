@@ -70,6 +70,18 @@ We also plan to release bedrock-rs on [crates.io](https://crates.io) in the futu
 
 ---
 
+## Contributors  
+
+A huge thank you to all the amazing individuals who have contributed to **bedrock-rs**! Your time, effort, and expertise are what make this project possible.  
+
+[![Contributors](https://contrib.rocks/image?repo=bedrock-crustaceans/bedrock-rs)](https://github.com/bedrock-crustaceans/bedrock-rs/graphs/contributors)
+
+Whether it’s fixing bugs, implementing features, or providing feedback, every contribution helps shape the future of this library. We appreciate each and every one of you!  
+
+Want to join this incredible group? Check out our Contributing Guide and make your mark on the project.  
+
+---
+
 ## Contributing
 
 We welcome contributions of all kinds! Whether you're fixing bugs, adding new features, or proposing entirely new modules, your efforts are highly appreciated. Here’s how you can get involved:  
