@@ -1,17 +1,16 @@
-use crate::v766::packets::{
+use crate::v748::packets::{
     AddActorPacket, AddItemActorPacket, AddPlayerPacket, AwardAchievementPacket, BossEventPacket,
-    CameraAimAssistPacket, CameraAimAssistPresetsPacket, CameraInstructionPacket,
-    CameraPresetsPacket, ChangeDimensionPacket, ClientBoundCloseFormPacket,
-    ClientBoundDebugRendererPacket, ClientBoundMapItemDataPacket, CodeBuilderSourcePacket,
-    ContainerClosePacket, ContainerRegistryCleanupPacket, CorrectPlayerMovePredictionPacket,
-    CraftingDataPacket, DisconnectPacket, EditorNetworkPacket, EmotePacket, InventoryContentPacket,
-    InventorySlotPacket, ItemStackRequestPacket, ItemStackResponsePacket,
-    JigsawStructureDataPacket, LegacyTelemetryEventPacket, MobArmorEquipmentPacket,
-    PlayerActionPacket, PlayerArmorDamagePacket, PlayerAuthInputPacket, PlayerListPacket,
-    ResourcePackStackPacket, ResourcePacksInfoPacket, ServerBoundDiagnosticsPacket,
-    ServerBoundLoadingScreenPacket, SetActorDataPacket, SetActorLinkPacket,
-    SetMovementAuthorityPacket, SetTitlePacket, StartGamePacket, StopSoundPacket, TextPacket,
-    TransferPlayerPacket, UpdateAttributesPacket, UpdatePlayerGameTypePacket, UpdateSoftEnumPacket,
+    CameraInstructionPacket, CameraPresetsPacket, ChangeDimensionPacket,
+    ClientBoundCloseFormPacket, ClientBoundDebugRendererPacket, ClientBoundMapItemDataPacket,
+    CodeBuilderSourcePacket, ContainerClosePacket, ContainerRegistryCleanupPacket,
+    CorrectPlayerMovePredictionPacket, CurrentStructureFeaturePacket, DisconnectPacket,
+    EditorNetworkPacket, EmotePacket, InventoryContentPacket, InventorySlotPacket,
+    ItemStackRequestPacket, ItemStackResponsePacket, JigsawStructureDataPacket,
+    LegacyTelemetryEventPacket, MobArmorEquipmentPacket, PlayerActionPacket,
+    PlayerArmorDamagePacket, ResourcePackStackPacket, ServerBoundDiagnosticsPacket,
+    ServerBoundLoadingScreenPacket, SetActorDataPacket, SetActorLinkPacket, SetTitlePacket,
+    StartGamePacket, StopSoundPacket, TextPacket, TransferPlayerPacket, UpdateAttributesPacket,
+    UpdatePlayerGameTypePacket, UpdateSoftEnumPacket,
 };
 use crate::version::v662::packets::{
     ActorEventPacket, ActorPickRequestPacket, AddBehaviourTreePacket, AddPaintingPacket,
@@ -63,11 +62,17 @@ use crate::version::v662::packets::{
 use crate::version::v662::{
     get_gamepacket_header_size_prediction, read_gamepacket_header, write_gamepacket_header,
 };
+use crate::version::v766::packets::{
+    CameraAimAssistPacket, CameraAimAssistPresetsPacket, CraftingDataPacket, MovementEffectPacket,
+    PlayerAuthInputPacket, PlayerListPacket, ResourcePacksInfoPacket, SetMovementAuthorityPacket,
+};
 use bedrockrs_macros::gamepackets;
 use bedrockrs_proto_core::sub_client::SubClientID;
 use std::io::{Cursor, Write};
 
 gamepackets! {
+    CurrentStructureFeature: CurrentStructureFeaturePacket,
+    MovementEffect: MovementEffectPacket,
     CameraAimAssist: CameraAimAssistPacket,
     CameraAimAssistPresets: CameraAimAssistPresetsPacket,
     AwardAchievent: AwardAchievementPacket,

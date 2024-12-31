@@ -1,4 +1,4 @@
-use crate::v766::types::FullContainerName;
+use crate::v748::types::FullContainerName;
 use crate::version::v662::enums::ContainerID;
 use crate::version::v662::types::NetworkItemStackDescriptor;
 use bedrockrs_macros::{gamepacket, ProtoCodec};

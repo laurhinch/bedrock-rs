@@ -1,6 +1,6 @@
 use crate::version::v662::enums::GameType;
 use crate::version::v662::types::{ActorRuntimeID, ActorUniqueID, ItemData, NetworkPermissions, SyncedPlayerMovementSettings};
-use crate::version::v766::types::LevelSettings;
+use crate::version::v748::types::LevelSettings;
 use vek::{Vec2, Vec3};
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 use uuid::Uuid;

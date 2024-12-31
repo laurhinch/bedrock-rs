@@ -1,5 +1,5 @@
 use crate::version::v662::types::ActorUniqueID;
-use crate::version::v766::enums::BossEventUpdateType;
+use crate::version::v748::enums::BossEventUpdateType;
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 
 #[gamepacket(id = 74)]

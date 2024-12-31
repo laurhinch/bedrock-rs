@@ -1,4 +1,4 @@
-use crate::v766::types::RecipeUnlockingRequirement;
+use crate::v748::types::RecipeUnlockingRequirement;
 use crate::version::v662::types::{NetworkItemInstanceDescriptor, RecipeIngredient};
 use bedrockrs_macros::ProtoCodec;
 use uuid::Uuid;

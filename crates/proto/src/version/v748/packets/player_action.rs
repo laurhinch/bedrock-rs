@@ -1,4 +1,4 @@
-use crate::version::v766::enums::PlayerActionType;
+use crate::version::v748::enums::PlayerActionType;
 use crate::version::v662::types::{ActorRuntimeID, NetworkBlockPosition};
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 

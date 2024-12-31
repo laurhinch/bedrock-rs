@@ -1,5 +1,5 @@
 use crate::version::v662::enums::{ItemStackRequestActionType, TextProcessingEventOrigin};
-use crate::version::v766::types::ItemStackRequestSlotInfo;
+use crate::version::v748::types::ItemStackRequestSlotInfo;
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 
 #[derive(ProtoCodec, Clone, Debug)]

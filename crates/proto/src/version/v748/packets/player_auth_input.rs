@@ -10,7 +10,7 @@ use bedrockrs_proto_core::error::ProtoCodecError;
 use bedrockrs_proto_core::{ProtoCodec, ProtoCodecLE, ProtoCodecVAR};
 use std::io::Cursor;
 use vek::{Vec2, Vec3};
-use crate::version::v766::types::PlayerBlockActions;
+use crate::version::v748::types::PlayerBlockActions;
 use crate::version::v748::types::{ItemStackRequestSlotInfo, PackedItemUseLegacyInventoryTransaction};
 
 pub struct PlayerAuthInputFlags;

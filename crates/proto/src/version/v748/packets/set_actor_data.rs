@@ -1,6 +1,6 @@
 use crate::version::v662::types::{ActorRuntimeID, PropertySyncData};
 use bedrockrs_macros::{gamepacket, ProtoCodec};
-use crate::version::v766::types::DataItem;
+use crate::version::v748::types::DataItem;
 
 #[gamepacket(id = 39)]
 #[derive(ProtoCodec, Clone, Debug)]

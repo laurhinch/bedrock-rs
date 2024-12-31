@@ -1,4 +1,4 @@
-use crate::version::v766::types::CameraPreset;
+use crate::version::v748::types::CameraPreset;
 use bedrockrs_macros::ProtoCodec;
 
 #[derive(ProtoCodec, Clone, Debug)]

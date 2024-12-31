@@ -1,4 +1,4 @@
-use crate::version::v766::types::PlayerBlockActionData;
+use crate::version::v748::types::PlayerBlockActionData;
 use bedrockrs_macros::ProtoCodec;
 
 #[derive(ProtoCodec, Clone, Debug)]

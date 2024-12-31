@@ -1,5 +1,5 @@
 use crate::version::v662::enums::{CodeBuilderStorageCategory, CodeBuilderStorageOperation};
-use crate::version::v766::enums::CodeBuilderExecutionState;
+use crate::version::v748::enums::CodeBuilderExecutionState;
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 
 #[gamepacket(id = 178)]

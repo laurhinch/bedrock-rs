@@ -1,4 +1,4 @@
-use crate::v766::types::RecipeUnlockingRequirement;
+use crate::v748::types::RecipeUnlockingRequirement;
 use crate::version::v662::types::{NetworkItemInstanceDescriptor, RecipeIngredient};
 use bedrockrs_proto_core::error::ProtoCodecError;
 use bedrockrs_proto_core::{ProtoCodec, ProtoCodecVAR};

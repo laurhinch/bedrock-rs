@@ -1,6 +1,6 @@
 use std::io::{Cursor, Read};
 use byteorder::{ReadBytesExt, WriteBytesExt};
-use crate::version::v766::enums::ItemStackNetResult;
+use crate::version::v748::enums::ItemStackNetResult;
 use bedrockrs_proto_core::error::ProtoCodecError;
 use bedrockrs_proto_core::{ProtoCodec, ProtoCodecVAR};
 

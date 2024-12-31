@@ -1,4 +1,4 @@
-use crate::version::v766::types::FullContainerName;
+use crate::version::v748::types::FullContainerName;
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 
 #[gamepacket(id = 317)]

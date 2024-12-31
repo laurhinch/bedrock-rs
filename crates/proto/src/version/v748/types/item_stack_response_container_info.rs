@@ -1,6 +1,6 @@
-use crate::version::v766::types::ItemStackResponseSlotInfo;
+use crate::version::v748::types::ItemStackResponseSlotInfo;
 use bedrockrs_macros::ProtoCodec;
-use crate::v766::types::FullContainerName;
+use crate::v748::types::FullContainerName;
 
 #[derive(ProtoCodec, Clone, Debug)]
 pub struct ItemStackResponseContainerInfo {

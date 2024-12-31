@@ -1,4 +1,4 @@
-use crate::version::v766::types::ItemStackResponseInfo;
+use crate::version::v748::types::ItemStackResponseInfo;
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 
 #[gamepacket(id = 148)]

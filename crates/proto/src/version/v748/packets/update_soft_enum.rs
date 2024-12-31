@@ -1,4 +1,4 @@
-use crate::version::v766::enums::SoftEnumUpdateType;
+use crate::version::v748::enums::SoftEnumUpdateType;
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 
 #[gamepacket(id = 114)]
