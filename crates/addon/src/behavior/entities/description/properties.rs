@@ -49,7 +49,7 @@ pub enum AddonEnumPropertyDefault {
 /// - Only `query.had_component_group` is available in default value expressions
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(tag = "type")]
-pub enum AddonEntityProperty {
+pub enum AddonBehaviorEntityProperty {
     /// Boolean property type
     /// 
     /// # Default Value

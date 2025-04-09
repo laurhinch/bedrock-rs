@@ -4,10 +4,10 @@ use serde::{Deserialize, Serialize};
 
 /// Scripts that define which animations or animation controllers to run
 #[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct AddonEntityScripts {
+pub struct AddonBehaviorEntityScripts {
     /// The animations and animation controllers to run and their conditions
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub animate: Option<Vec<AddonEntityScriptAnimation>>,
+    pub animate: Option<Vec<AddonBehaviorEntityScriptAnimation>>,
 }
 
 /// Represents animations that can be run in an entity's scripts
@@ -17,7 +17,7 @@ pub struct AddonEntityScripts {
 /// - A conditional object with animation names as keys and Molang conditions as values
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(untagged)]
-pub enum AddonEntityScriptAnimation {
+pub enum AddonBehaviorEntityScriptAnimation {
     /// Simple animation name as string
     Simple(String),
     /// Conditional animation with animation name as key and molang condition as value

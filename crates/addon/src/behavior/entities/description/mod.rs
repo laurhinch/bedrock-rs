@@ -6,14 +6,14 @@ use std::collections::HashMap;
 use serde::{Deserialize, Serialize};
 
 use crate::identifier::AddonIdentifier;
-use self::properties::AddonEntityProperty;
-use self::scripts::AddonEntityScripts;
+use self::properties::AddonBehaviorEntityProperty;
+use self::scripts::AddonBehaviorEntityScripts;
 
 /// Description of an entity in a Bedrock addon
 /// 
 /// This contains the fundamental properties that describe an entity
 #[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct AddonEntityDescription {
+pub struct AddonBehaviorEntityDescription {
     /// The unique identifier for this entity
     pub identifier: AddonIdentifier,
     /// Controls whether the entity has a spawn egg in the creative UI
@@ -34,10 +34,10 @@ pub struct AddonEntityDescription {
     /// # Limitations
     /// - Each entity type is limited to 32 Entity Properties total
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub properties: Option<HashMap<String, AddonEntityProperty>>,
+    pub properties: Option<HashMap<String, AddonBehaviorEntityProperty>>,
     /// Maps the entity's animations and animation controllers to run
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub scripts: Option<AddonEntityScripts>,
+    pub scripts: Option<AddonBehaviorEntityScripts>,
     /// The Vanilla runtime identifier this entity should use
     /// Generally, the entity will obtain some behavior from this identifier
     #[serde(skip_serializing_if = "Option::is_none")]
